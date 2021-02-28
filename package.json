@@ -1,0 +1,23 @@
+{
+  "name": "nuqleus",
+  "version": "1.0.0",
+  "description": "Boost GraphQL endpoint testing capabilities with resolver-level performance metrics and error tracing",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oslabs-beta/NuQLeus"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/oslabs-beta/NuQLeus/issues"
+  },
+  "homepage": "https://github.com/oslabs-beta/NuQLeus#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "^11.3.0"
+  }
+}
