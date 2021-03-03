@@ -1,9 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM, { render } from 'react-dom';
+import MainContainer from './containers/MainContainer';
 
-// type AppProps = { message: 'hello' };
-// const App = ({ message: string = 'hello' }) => <>{message}</>;
-
-const App = () => <div>Hello World</div>;
+const App: React.FC = () => {
+  return (
+    <div>
+      <MainContainer />
+    </div>
+  )
+};
 
 export default App;
