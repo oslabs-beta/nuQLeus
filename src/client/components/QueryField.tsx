@@ -10,7 +10,7 @@ export const QueryField: React.FC<QueryFieldProps> = () => {
     <div>
       <label>
         Query: 
-        <input id="query-input" type="text" />
+        <input id="query-input" className="input" type="text" />
       </label>
     </div>
   )

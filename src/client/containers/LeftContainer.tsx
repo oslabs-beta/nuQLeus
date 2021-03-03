@@ -9,7 +9,7 @@ export interface LeftContainerProps {
   
 export const LeftContainer: React.FC<LeftContainerProps> = () => {  
   return (
-    <div>
+    <div id="left-container" className="container">
       <ServerField />
       <QueryField />
       <VariableField />

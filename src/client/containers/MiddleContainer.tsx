@@ -7,7 +7,7 @@ export interface MiddleContainerProps {
   
 export const MiddleContainer: React.FC<MiddleContainerProps> = () => {  
   return (
-    <div>
+    <div id="middle-container" className="container">
       <OutputDisplay />
     </div>
   )

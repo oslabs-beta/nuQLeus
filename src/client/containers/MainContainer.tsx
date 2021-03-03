@@ -4,7 +4,7 @@ import { MiddleContainer } from './MiddleContainer';
 
 const MainContainer: React.FC = () => {
   return (
-    <div>
+    <div id="main-container" className="container">
       <LeftContainer />
       <MiddleContainer />
     </div>

@@ -1,0 +1,38 @@
+/***** CONTAINERS *****/
+#main-container {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  align-content: stretch;
+  border: 1px solid blue;
+}
+
+#left-container {
+  border: 1px solid red;
+}
+
+#middle-container {
+  border: 1px solid green;
+}
+
+/***** INPUTS *****/
+#server-input {
+  height: 1.2em;
+  width: 60%;
+}
+
+#query-input {
+  height: 4em;
+  width: 100%;
+}
+
+#variable-input {
+  height: 4em;
+  width: 100%;
+}
+
+/***** OUTPUTS *****/
+#output-display {
+  height: 50%;
+  width: 100%;
+}

@@ -10,7 +10,7 @@ export const VariableField: React.FC<VariableFieldProps> = () => {
     <div>
       <label>
         Variable: 
-        <input id="variable-input" type="text" />
+        <input id="variable-input" className="input" type="text" />
       </label>
     </div>
   )

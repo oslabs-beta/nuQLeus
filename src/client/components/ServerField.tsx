@@ -16,7 +16,7 @@ export const ServerField: React.FC<ServerFieldProps> = () => {
       <form>
         <label>
           Server: 
-          <input id="server-input" type="text" />
+          <input id="server-input" className="input" type="text" />
         </label>
         <button id="submit-server" onClick={handleClick}>
           Link
