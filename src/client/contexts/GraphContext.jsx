@@ -1,4 +1,4 @@
-import React, { createContext, Component } from 'react';
+import React, { createContext, Component, useState } from 'react';
 
 export const GraphContext = createContext();
 
@@ -9,22 +9,19 @@ const sampleBody =
   }
 }`;
 
-class GraphContextProvider extends Component {
-
-  state = {
+const GraphContextProvider = (props) => {
+  const [info, setInfo] = useState({
     uri: 'https://48p1r2roz4.sse.codesandbox.io',
     body: sampleBody,
     variables: 'variables context test string',
-    response: 'response context test string'
-  }
+    response: 'hello'
+  });
 
-  render() { 
-    return (
-      <GraphContext.Provider value={{...this.state}}>
-        {this.props.children}
-      </GraphContext.Provider>
-    );
-  }
+  return (
+    <GraphContext.Provider value={ [info, setInfo] }>
+      {props.children}
+    </GraphContext.Provider>
+  );
 }
- 
+
 export default GraphContextProvider;

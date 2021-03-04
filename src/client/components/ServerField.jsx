@@ -4,6 +4,12 @@ import { ApolloClient, InMemoryCache } from '@apollo/client';
 import { gql } from '@apollo/client';
 
 export const ServerField = () => {
+  // Pull state into component from ApolloContext using 'useContext' hook
+  // const value = useContext(GraphContext);
+  const [info, setInfo] = useContext(GraphContext);
+  // const [inputs, setInputs] = useState(value);
+
+  // Invokes query to the Apollo client
   function handleClick(e) {
     e.preventDefault();
 
@@ -23,21 +29,22 @@ export const ServerField = () => {
       .query({
         query: gql`${userBody}`
       })
-      .then(result => console.log(result))
+      .then(res => {
+        // setInputs(prevInputs => Object.assign(prevInputs, {response: res.data.rates}));
+        setInfo(prevInfo => Object.assign(prevInfo, {response: res.data.rates}));
+        console.log('QUERY RESULT: ', info);
+      })
       .catch((err) => console.log('Invalid URL'))
   };
-
-  // Pull state into component from ApolloContext using 'useContext' hook
-  const value = useContext(GraphContext);
 
   return (
     <div>
       <form>
         <label>
           Server: 
-          <input id="server-input" className="input" type="text" defaultValue={ value.uri } />
+          <input id="server-input" className="input" type="text" defaultValue={info.uri} />
         </label>
-        <button id="submit-server" onClick={ (e) => handleClick(e) }>
+        <button id="submit-query" onClick={ (e) => handleClick(e) }>
           Link
         </button>
       </form>
