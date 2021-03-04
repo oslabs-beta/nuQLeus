@@ -1,9 +1,8 @@
-import React, { createContext, Component, useState } from 'react';
+import React, { createContext, useState } from 'react';
 
 export const GraphContext = createContext();
 
-const sampleBody = 
-`query GetRates {
+const sampleBody = `query GetRates {
   rates(currency: "USD") {
     currency
   }
@@ -14,14 +13,10 @@ const GraphContextProvider = (props) => {
     uri: 'https://48p1r2roz4.sse.codesandbox.io',
     body: sampleBody,
     variables: 'variables context test string',
-    response: 'hello'
+    response: 'hello',
   });
 
-  return (
-    <GraphContext.Provider value={ [info, setInfo] }>
-      {props.children}
-    </GraphContext.Provider>
-  );
-}
+  return <GraphContext.Provider value={[info, setInfo]}>{props.children}</GraphContext.Provider>;
+};
 
 export default GraphContextProvider;

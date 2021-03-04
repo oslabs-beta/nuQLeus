@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
   entry: './src/client/index.jsx',
   mode: 'development',
-  target: 'electron-renderer',
+  // target: 'electron-renderer',
   devtool: 'source-map',
   module: {
     rules: [
@@ -15,17 +15,17 @@ module.exports = {
       {
         test: /\.(jsx?)$/,
         exclude: /node_modules/,
-        loader: "babel-loader",
+        loader: 'babel-loader',
         options: {
-          presets: ["@babel/preset-env", "@babel/preset-react"],
-          plugins: ["@babel/plugin-transform-runtime", "@babel/plugin-proposal-class-properties"]
+          presets: ['@babel/preset-env', '@babel/preset-react'],
+          // plugins: ["@babel/plugin-transform-runtime", "@babel/plugin-proposal-class-properties"]
         }
       },
       {
         test: /.(css|scss)$/,
         exclude: /node_modules/,
-        use: ["style-loader", "css-loader", "sass-loader"]
-      }
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
     ],
   },
   resolve: {
@@ -35,5 +35,9 @@ module.exports = {
     publicPath: '/dist/',
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
+  },
+  devServer: {
+    publicPath: '/dist/',
+    hot: true,
   },
 };

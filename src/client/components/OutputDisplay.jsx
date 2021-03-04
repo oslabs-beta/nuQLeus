@@ -1,11 +1,9 @@
 import React, { useContext } from 'react';
 import { GraphContext } from '../contexts/GraphContext';
 
-
-
-export const OutputDisplay = () => {
+const OutputDisplay = () => {
   const [info, setInfo] = useContext(GraphContext);
-  console.log('TESTING INFO: ', info)
+  console.log('TESTING INFO: ', info);
 
   return (
     <div>
@@ -14,5 +12,7 @@ export const OutputDisplay = () => {
         {info.response}
       </div>
     </div>
-  )
+  );
 };
+
+export default OutputDisplay;
