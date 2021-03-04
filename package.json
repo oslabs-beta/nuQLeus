@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/oslabs-beta/NuQLeus#readme",
   "dependencies": {
+    "@apollo/client": "^3.3.11",
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
     "@fortawesome/free-brands-svg-icons": "^5.15.2",
     "@fortawesome/free-regular-svg-icons": "^5.15.2",
@@ -30,6 +31,7 @@
     "devtron": "^1.4.0",
     "electron": "^11.3.0",
     "express": "^4.17.1",
+    "graphql": "^15.5.0",
     "pg": "^8.5.1",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0"
@@ -37,6 +39,7 @@
   "devDependencies": {
     "@babel/cli": "^7.1.0",
     "@babel/core": "^7.1.0",
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
     "@babel/plugin-transform-runtime": "^7.12.15",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
