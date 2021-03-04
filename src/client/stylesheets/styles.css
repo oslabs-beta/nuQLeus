@@ -2,37 +2,44 @@
 #main-container {
   display: flex;
   flex-direction: row;
-  align-items: stretch;
-  align-content: stretch;
+  justify-content: space-evenly;
   border: 1px solid blue;
 }
 
 #left-container {
+  width: 50%;
   border: 1px solid red;
 }
 
 #middle-container {
+  width: 50%;
   border: 1px solid green;
 }
 
 /***** INPUTS *****/
+.input {
+  overflow-wrap: break-word;
+}
+
 #server-input {
   height: 1.2em;
   width: 60%;
 }
 
 #query-input {
-  height: 4em;
-  width: 100%;
+  height: 6em;
+  width: 95%;
 }
 
 #variable-input {
-  height: 4em;
-  width: 100%;
+  height: 6em;
+  width: 95%;
 }
 
 /***** OUTPUTS *****/
 #output-display {
-  height: 50%;
-  width: 100%;
+  height: 14em;
+  width: 95%;
+  overflow-wrap: break-word;
+  border: 1px solid purple;
 }

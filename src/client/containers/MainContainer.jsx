@@ -2,7 +2,7 @@ import React from 'react';
 import { LeftContainer } from './LeftContainer';
 import { MiddleContainer } from './MiddleContainer';
 
-const MainContainer: React.FC = () => {
+const MainContainer = () => {
   return (
     <div id="main-container" className="container">
       <LeftContainer />
