@@ -5,7 +5,7 @@ const types = require('./types');
 
 
 const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLInt, GraphQLList, 
-  GraphQLNonNull, GraphQLInputObjectType, GraphQLSchema } = graphql;
+  GraphQLNonNull, GraphQLInputObjectType, GraphQLFloat, GraphQLSchema } = graphql;
 
 //Schema defines data on the Graph like object types(book type), relation between 
 //these object types and descibes how it can reach into the graph to interact with 
@@ -35,9 +35,9 @@ const RootQuery = new GraphQLObjectType({
     },
     movies: {
       type: new GraphQLList(types.MovieType),
-      //args: { last: { type: GraphQLInt } },
+      args: { first: { type: GraphQLInt } },
       resolve(parent, args) {
-        return Movie.find({});
+        return Movie.find({}).limit(args.first);
       }
     },
     comment: {
@@ -49,8 +49,9 @@ const RootQuery = new GraphQLObjectType({
     },
     comments: {
       type: new GraphQLList(types.CommentType),
+      args: { first: { type: GraphQLInt } },
       resolve(parent, args) {
-        return Comment.find({});
+        return Comment.find({}).limit(args.first);
       }
     }
   }
@@ -93,6 +94,7 @@ const Mutation = new GraphQLObjectType({
     addComment: {
       type: types.CommentType,
       args: {
+       // _id: { type: new GraphQLNonNull(GraphQLID) },
         name: { type: new GraphQLNonNull(GraphQLString) },
         email: { type: new GraphQLNonNull(GraphQLString) },
         movie_id: { type: new GraphQLNonNull(GraphQLID)},
@@ -106,6 +108,7 @@ const Mutation = new GraphQLObjectType({
       },
       resolve(parent, args) {
         let comment = new Comment({
+          //_id: args._id,
           name: args.name,
           email: args.email,
           movie_id: args.movie_id,

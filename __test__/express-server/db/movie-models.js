@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const movieSchema = new Schema({
-  _id: Schema.Types.ObjectId,
   title: String,
   year: Number,
   runtime: Number,

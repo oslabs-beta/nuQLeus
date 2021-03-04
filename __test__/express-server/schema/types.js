@@ -3,13 +3,13 @@ const Movie = require('../db/movie-models');
 const Comment = require('../db/comments-models');
 
 const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLInt, GraphQLList, 
-  GraphQLNonNull, GraphQLInputObjectType, GraphQLSchema } = graphql;
+  GraphQLNonNull, GraphQLInputObjectType, GraphQLFloat, GraphQLSchema } = graphql;
 
   const ImdbType = new GraphQLObjectType({
     name: 'imdb',
     fields: () => ({
-      rating: { type: GraphQLInt },
-      votes: { type: GraphQLInt },
+      rating: { type: GraphQLString },
+      votes: { type: GraphQLString },
       id: { type: GraphQLInt }
     })
   });
@@ -22,20 +22,20 @@ const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLInt, GraphQLList,
       text: { type: GraphQLString },
     })
   });
+
+  const ViewerType = new GraphQLObjectType({
+    name: 'viewer',
+    fields: () => ({
+      rating: { type: GraphQLFloat },
+      numReviews: { type: GraphQLInt },
+      meter: { type: GraphQLInt }
+    })
+  });
   
   const TomatoesType = new GraphQLObjectType({
     name: 'tomatoes',
     fields: () => ({
-      viewer: { 
-        type: new GraphQLObjectType({
-          name: 'viewer',
-          fields: () => ({
-            rating: { type: GraphQLInt },
-            numReviews: { type: GraphQLInt },
-            meter: { type: GraphQLInt }
-          })
-        })
-      },
+      viewer: { type: ViewerType },
       lastUpdated: { type: GraphQLString }
     })
   });
@@ -50,19 +50,19 @@ const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLInt, GraphQLList,
       released: { type: GraphQLString },
       poster: { type: GraphQLString },
       rated: { type: GraphQLString },
-      cast: { type: new GraphQLList(GraphQLString) },
+      cast: { type: GraphQLList(GraphQLString) },
       plot: { type: GraphQLString },
       fullplot: { type: GraphQLString },
       lastupdated: { type: GraphQLString },
       type: { type: GraphQLString },
-      directors: { type: new GraphQLList(GraphQLString) },
-      writers: { type: new GraphQLList(GraphQLString) },
+      directors: { type: GraphQLList(GraphQLString) },
+      writers: { type: GraphQLList(GraphQLString) },
       imdb: { type: ImdbType },
       awards: { type: AwardsType },
       tomatoes: { type: TomatoesType },
-      languages: { type: new GraphQLList(GraphQLString) },
-      countries: { type: new GraphQLList(GraphQLString) },
-      genres: { type: new GraphQLList(GraphQLString) },
+      languages: { type: GraphQLList(GraphQLString) },
+      countries: { type: GraphQLList(GraphQLString) },
+      genres: { type: GraphQLList(GraphQLString) },
       num_mflix_comments: { type: GraphQLInt },
       comments: { 
         type: new GraphQLList(CommentType),
@@ -83,10 +83,7 @@ const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLInt, GraphQLList,
       movie: { 
         type: MovieType,
         resolve(parent, args) {
-          Movie.find({ _id: parent.movie_id }, (err, result) => {
-            if (!result) return 'No movie found'
-            else return result;
-          })
+          return Movie.findById(parent.movie_id)
         }
       },
       text: { type: GraphQLString },
@@ -149,4 +146,4 @@ const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLInt, GraphQLList,
     }
   })
 
-  module.exports = { MovieType, CommentType, InputMovieType }
+  module.exports = { ImdbType, TomatoesType, AwardsType, MovieType, CommentType, InputMovieType }
