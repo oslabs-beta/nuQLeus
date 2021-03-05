@@ -3,7 +3,6 @@ const Movie = require('../db/movie-models');
 const Comment = require('../db/comments-models');
 const types = require('./types');
 
-
 const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLInt, GraphQLList, 
   GraphQLNonNull, GraphQLInputObjectType, GraphQLFloat, GraphQLSchema } = graphql;
 
@@ -63,30 +62,78 @@ const Mutation = new GraphQLObjectType({
     addMovie: {
       type: types.MovieType,
       args: {
-        input: { type: types.InputMovieType }
+        title: { type: new GraphQLNonNull(GraphQLString) },
+        year: { type: new GraphQLNonNull(GraphQLInt) },
+        runtime: { type: new GraphQLNonNull(GraphQLInt) },
+        released: { type: new GraphQLNonNull(GraphQLString) },
+        poster: { type: GraphQLString },
+        rated: { type: GraphQLString },
+        cast: { type: new GraphQLList(GraphQLString) },
+        plot: { type: GraphQLString },
+        fullplot: { type: GraphQLString },
+        lastupdated: { type: GraphQLString },
+        type: { type: GraphQLString },
+        directors: { type: new GraphQLList(GraphQLString) },
+        writers: { type: new GraphQLList(GraphQLString) },
+        imdb: { type: new GraphQLInputObjectType({
+          name: 'ImdbInput',
+          fields: {
+            rating: { type: GraphQLInt },
+            votes: { type: GraphQLInt },
+            id: { type: GraphQLInt }
+          }
+        })},
+        awards: { type: new GraphQLInputObjectType({
+          name: 'AwardsInput',
+          fields: {
+            wins: { type: GraphQLInt },
+            nominations: { type: GraphQLInt },
+            text: { type: GraphQLString },
+          },
+        }) },
+        tomatoes: { type: new GraphQLInputObjectType({
+          name: 'TomatoesInput',
+          fields: {
+            viewer: { 
+              type: new GraphQLInputObjectType({
+                name: 'ViewerInput',
+                fields: () => ({
+                  rating: { type: GraphQLInt },
+                  numReviews: { type: GraphQLInt },
+                  meter: { type: GraphQLInt }
+                })
+              })
+            },
+            lastUpdated: { type: GraphQLString }
+          }
+        }) },
+        languages: { type: new GraphQLList(GraphQLString) },
+        countries: { type: new GraphQLList(GraphQLString) },
+        genres: { type: new GraphQLList(GraphQLString) },
+        num_mflix_comments: { type: GraphQLInt },
       },
       resolve(parent, args) {
         let movie = new Movie({
-          title: args.input.title,
-          year: args.input.year,
-          runtime: args.input.runtime,
-          released: args.input.released,
-          poster: args.input.poster,
-          rated: args.input.rated,
-          cast: args.input.cast,
-          plot: args.input.plot,
-          fullplot: args.input.fullplot,
-          lastupdated: args.input.lastupdated,
-          type: args.input.type,
-          directors: args.input.directors,
-          writers: args.input.writers,
-          imdb: args.input.imdb,
-          awards: args.input.awards,
-          tomatoes: args.input.tomatoes,
-          languages: args.input.languages,
-          countries: args.input.countries,
-          genres: args.input.genres,
-          num_mflix_comments: args.input.num_mflix_comments
+          title: args.title,
+          year: args.year,
+          runtime: args.runtime,
+          released: args.released,
+          poster: args.poster,
+          rated: args.rated,
+          cast: args.cast,
+          plot: args.plot,
+          fullplot: args.fullplot,
+          lastupdated: args.lastupdated,
+          type: args.type,
+          directors: args.directors,
+          writers: args.writers,
+          imdb: args.imdb,
+          awards: args.awards,
+          tomatoes: args.tomatoes,
+          languages: args.languages,
+          countries: args.countries,
+          genres: args.genres,
+          num_mflix_comments: args.num_mflix_comments
         });
         return movie.save();
       }
