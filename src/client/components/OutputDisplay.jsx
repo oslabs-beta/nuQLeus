@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { GraphContext } from '../contexts/GraphContext';
 
 const OutputDisplay = () => {
-  const { info, setInfo } = useContext(GraphContext);
+  const [info] = useContext(GraphContext);
 
   return (
     <div>

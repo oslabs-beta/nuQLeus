@@ -1,12 +1,10 @@
-import React, { useContext, useState, MouseEvent } from 'react';
+import React, { useContext } from 'react';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import { GraphContext } from '../contexts/GraphContext';
 
 const ServerField = () => {
   // Pull state into component from ApolloContext using 'useContext' hook
-  // const value = useContext(GraphContext);
-  const { info, setInfo } = useContext(GraphContext);
-  // const [inputs, setInputs] = useState(value);
+  const [info, setInfo] = useContext(GraphContext);
 
   // Invokes query to the Apollo client
   function handleClick(e) {
@@ -33,11 +31,16 @@ const ServerField = () => {
       .then((res) => {
         // setInputs(prevInputs => Object.assign(prevInputs, {response: res.data.rates}));
         setInfo(() => ({
-          ...info, 
-          response: res.data.rates
+          ...info,
+          response: res.data,
         }));
       })
-      .catch((err) => console.log('Invalid URL'));
+      .catch(() => {
+        setInfo(() => ({
+          ...info,
+          response: 'Query failed.',
+        }));
+      });
   }
 
   return (
@@ -47,7 +50,7 @@ const ServerField = () => {
           Server:
           <input id="server-input" className="input" type="text" defaultValue={info.uri} />
         </label>
-        <button id="submit-query" type="submit" onClick={((e) => handleClick(e))}>
+        <button id="submit-query" type="submit" onClick={handleClick}>
           Link
         </button>
       </form>
