@@ -1,8 +1,8 @@
-import React, { useContext, useState, MouseEvent } from 'react';
+import React, { useContext } from 'react';
 import { GraphContext } from '../contexts/GraphContext';
 
 const VariableField = () => {
-  const [info, setInfo] = useContext(GraphContext);
+  const [info] = useContext(GraphContext);
 
   return (
     <div>
@@ -11,7 +11,7 @@ const VariableField = () => {
         <textarea id="variable-input" className="input" type="text" defaultValue={info.variables} />
       </label>
     </div>
-  )
+  );
 };
 
 export default VariableField;

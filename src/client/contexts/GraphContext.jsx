@@ -12,8 +12,8 @@ const GraphContextProvider = (props) => {
   const [info, setInfo] = useState({
     uri: 'https://48p1r2roz4.sse.codesandbox.io',
     body: sampleBody,
-    variables: 'variables context test string',
-    response: 'hello',
+    variables: '',
+    response: '',
   });
 
   return <GraphContext.Provider value={[info, setInfo]}>{props.children}</GraphContext.Provider>;
