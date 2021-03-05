@@ -5,7 +5,8 @@
   "main": "main.js",
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "start": "npm run build && electron ./main.js"
+    "start": "npm run build && electron ./main.js",
+    "dev": "webpack serve --open --hot"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
   },
   "homepage": "https://github.com/oslabs-beta/NuQLeus#readme",
   "dependencies": {
+    "@apollo/client": "^3.3.11",
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
     "@fortawesome/free-brands-svg-icons": "^5.15.2",
     "@fortawesome/free-regular-svg-icons": "^5.15.2",
@@ -27,16 +29,22 @@
     "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
     "devtron": "^1.4.0",
+    "dotenv": "^8.2.0",
     "electron": "^11.3.0",
     "express": "^4.17.1",
+    "graphql": "^15.5.0",
     "pg": "^8.5.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.0",
     "@babel/core": "^7.1.0",
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
     "@babel/plugin-transform-runtime": "^7.12.15",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
@@ -44,11 +52,8 @@
     "@types/react-dom": "^17.0.1",
     "babel-loader": "^8.0.2",
     "concurrently": "^5.3.0",
-    "cross-env": "^7.0.3",
     "css-loader": "^1.0.0",
     "nodemon": "^2.0.7",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
     "sass": "^1.32.6",
     "sass-loader": "^7.3.1",
     "style-loader": "^0.23.0",
