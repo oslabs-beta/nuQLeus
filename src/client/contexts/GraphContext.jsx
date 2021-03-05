@@ -17,7 +17,7 @@ export const GraphContextProvider = (props) => {
   });
 
   return (
-    <GraphContext.Provider value={{ info, setInfo }}>
+    <GraphContext.Provider value={[ info, setInfo ]}>
       {props.children}
     </GraphContext.Provider>
   )
