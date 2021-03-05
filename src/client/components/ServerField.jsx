@@ -5,7 +5,7 @@ import { GraphContext } from '../contexts/GraphContext';
 const ServerField = () => {
   // Pull state into component from ApolloContext using 'useContext' hook
   // const value = useContext(GraphContext);
-  const [info, setInfo] = useContext(GraphContext);
+  const { info, setInfo } = useContext(GraphContext);
   // const [inputs, setInputs] = useState(value);
 
   // Invokes query to the Apollo client
@@ -32,8 +32,10 @@ const ServerField = () => {
       })
       .then((res) => {
         // setInputs(prevInputs => Object.assign(prevInputs, {response: res.data.rates}));
-        setInfo((prevInfo) => Object.assign(prevInfo, { response: res.data.rates }));
-        console.log('QUERY RESULT: ', info);
+        setInfo(() => ({
+          ...info, 
+          response: res.data.rates
+        }));
       })
       .catch((err) => console.log('Invalid URL'));
   }
@@ -45,7 +47,7 @@ const ServerField = () => {
           Server:
           <input id="server-input" className="input" type="text" defaultValue={info.uri} />
         </label>
-        <button id="submit-query" type="submit" onClick={(e) => handleClick(e)}>
+        <button id="submit-query" type="submit" onClick={((e) => handleClick(e))}>
           Link
         </button>
       </form>

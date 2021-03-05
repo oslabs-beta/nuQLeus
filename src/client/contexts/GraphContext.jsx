@@ -8,7 +8,7 @@ const sampleBody = `query GetRates {
   }
 }`;
 
-const GraphContextProvider = (props) => {
+export const GraphContextProvider = (props) => {
   const [info, setInfo] = useState({
     uri: 'https://48p1r2roz4.sse.codesandbox.io',
     body: sampleBody,
@@ -16,7 +16,10 @@ const GraphContextProvider = (props) => {
     response: 'hello',
   });
 
-  return <GraphContext.Provider value={[info, setInfo]}>{props.children}</GraphContext.Provider>;
+  return (
+    <GraphContext.Provider value={{ info, setInfo }}>
+      {props.children}
+      {console.log('CONTEXT: ', info)}
+    </GraphContext.Provider>
+  )
 };
-
-export default GraphContextProvider;
