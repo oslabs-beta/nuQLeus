@@ -1,6 +1,8 @@
 const express = require('express');
 const { graphqlHTTP } = require('express-graphql');
 const schema = require('./schema/schema');
+const { ResponsePath, responsePathAsArray, GraphQLType } = require('graphql');
+const queryLevelTracing = require('./controllers/query-tracing');
 
 const mongoose = require('mongoose');
 
@@ -22,12 +24,17 @@ const extensions = ({
   };
 };
 
-app.use('/graphql', graphqlHTTP({
-  schema, 
-  graphiql: true,
-  rootValue: {},
-  extensions
-}));
+app.use(
+  '/graphql',
+  graphqlHTTP((request) => {
+    return {
+      schema,
+      context: { startTime: Date.now() },
+      graphiql: true,
+      extensions,
+    };
+  }),
+);
 
 /** Connect to MongoDB **/ 
 
