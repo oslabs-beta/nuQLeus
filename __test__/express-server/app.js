@@ -8,9 +8,25 @@ const app = express();
 
 /** Initiate graphQL route **/ 
 
+//app.use(queryLevelTracing);
+
+const extensions = ({
+  document,
+  variables,
+  operationName,
+  result,
+  context,
+}) => {
+  return {
+    runTime: Date.now() - context.startTime,
+  };
+};
+
 app.use('/graphql', graphqlHTTP({
   schema, 
-  graphiql: true
+  graphiql: true,
+  rootValue: {},
+  extensions
 }));
 
 /** Connect to MongoDB **/ 
