@@ -1,0 +1,51 @@
+[
+  {
+    "startTime": 1615313611651,
+    "endTime": 1615313611721,
+    "fieldName": "movies",
+    "duration": 70,
+    "operation": "query"
+  },
+  {
+    "startTime": 1615313611722,
+    "endTime": 1615313611722,
+    "fieldName": "title",
+    "duration": 0,
+    "operation": "query"
+  },
+  {
+    "startTime": 1615313611722,
+    "endTime": 1615313611724,
+    "fieldName": "cast",
+    "duration": 2,
+    "operation": "query"
+  },
+  {
+    "startTime": 1615313611722,
+    "endTime": 1615313611724,
+    "fieldName": "title",
+    "duration": 2,
+    "operation": "query"
+  },
+  {
+    "startTime": 1615313611722,
+    "endTime": 1615313611724,
+    "fieldName": "cast",
+    "duration": 2,
+    "operation": "query"
+  },
+  {
+    "startTime": 1615313611722,
+    "endTime": 1615313611724,
+    "fieldName": "title",
+    "duration": 2,
+    "operation": "query"
+  },
+  {
+    "startTime": 1615313611722,
+    "endTime": 1615313611724,
+    "fieldName": "cast",
+    "duration": 2,
+    "operation": "query"
+  }
+]
