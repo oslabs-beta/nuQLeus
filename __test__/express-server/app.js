@@ -1,8 +1,11 @@
 const express = require('express');
 const { graphqlHTTP } = require('express-graphql');
 const schema = require('./schema/schema');
+const { applyMiddleware } = require('graphql-middleware');
 const { ResponsePath, responsePathAsArray, GraphQLType } = require('graphql');
 const queryLevelTracing = require('./controllers/query-tracing');
+const fs = require('fs');
+const path = require('path');
 
 const mongoose = require('mongoose');
 
@@ -10,7 +13,7 @@ const app = express();
 
 /** Initiate graphQL route **/ 
 
-//app.use(queryLevelTracing);
+//app.use(queryLevelTracing)
 
 const extensions = ({
   document,
@@ -19,21 +22,38 @@ const extensions = ({
   result,
   context,
 }) => {
+  //fs.writeFile(path.resolve(__dirname, './data/latest-query.json'), JSON.stringify(context.queryTimes), (err) => console.log(err));
   return {
-    runTime: Date.now() - context.startTime,
+    startTime: context.startTime,
+    endTime: Date.now(),
+    duration: Date.now() - context.startTime,
   };
 };
 
+const logInput = async (resolve, root, args, context, info) => {
+  //console.log('info:', info);
+  const startTime = Date.now();
+  // console.log(`1. startTime: ${startTime}`)
+  const result = await resolve(root, args, context, info)
+  const endTime = Date.now();
+  // console.log(`2. endTime: ${endTime}`)
+  // console.log(`3. fieldName: ${JSON.stringify(info.fieldName)}`)
+  // console.log(`4. duration: ${endTime - startTime}`) 
+  context.queryTimes.push({startTime, endTime, fieldName: info.fieldName, duration: endTime - startTime, operation: info.operation.operation })
+  fs.writeFile(path.resolve(__dirname, './data/latest-query.json'), JSON.stringify(context.queryTimes, null, 2), (err) => console.log(err));
+  return result;
+}
+
+const schemaWithMiddleware = applyMiddleware(schema, logInput)
+
 app.use(
   '/graphql',
-  graphqlHTTP((request) => {
-    return {
-      schema,
-      context: { startTime: Date.now() },
+  graphqlHTTP({
+      schema: schemaWithMiddleware,
+      context: { startTime: Date.now(), queryTimes: [] }, 
       graphiql: true,
       extensions,
-    };
-  }),
+    })
 );
 
 /** Connect to MongoDB **/ 

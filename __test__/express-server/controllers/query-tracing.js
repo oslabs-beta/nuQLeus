@@ -1,3 +1,4 @@
+const { operationName } = require('@apollo/client');
 const pino = require('pino');
 const logger = pino();
 
@@ -5,7 +6,7 @@ const queryLevelTracing = (req, res, next) => {
   // Save the start time in a variable
   const startHrTime = process.hrtime();
 
-  console.log('req.params:', req.params);
+  console.log('req', req.ip);
   // When request is finished
   res.on("finish", () => {
     // If there is a req.body and operationName in the body
