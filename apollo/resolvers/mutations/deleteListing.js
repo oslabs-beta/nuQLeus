@@ -1,4 +1,4 @@
-const { ApolloError } = require("apollo-server");
+const { ApolloError } = require('apollo-server');
 
 module.exports = async (_, { id }, { models }) => {
   const deleteListing = await models.Listing.deleteOne({ _id: id });

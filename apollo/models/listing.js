@@ -1,8 +1,13 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 //AnimalSchema
 const ListingAndReviewsSchema = new Schema({
+  _id: {
+    type: String,
+    trim: true,
+  },
+
   listing_url: {
     type: String,
     trim: true,
@@ -136,6 +141,6 @@ const ListingAndReviewsSchema = new Schema({
   },
 });
 
-const Listing = mongoose.model("listing", ListingAndReviewsSchema);
+const Listing = mongoose.model('listing', ListingAndReviewsSchema);
 
 module.exports = { Listing };

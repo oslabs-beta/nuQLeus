@@ -1,8 +1,8 @@
-const { gql } = require("apollo-server");
+const { gql } = require('apollo-server');
 
 module.exports = gql`
   type Listing {
-    id: ID!
+    _id: ID!
 
     listing_url: String
 
@@ -64,6 +64,8 @@ module.exports = gql`
   }
 
   input CreateListingInput {
+    _id: ID!
+
     listing_url: String
 
     name: String!
@@ -184,6 +186,8 @@ module.exports = gql`
   }
 
   input DeleteListingInput {
+    id: ID!
+
     listing_url: String
 
     name: String!
@@ -244,6 +248,8 @@ module.exports = gql`
   }
 
   type DeletePayload {
+    id: ID!
+
     listing_url: String
 
     name: String!
