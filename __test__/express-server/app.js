@@ -16,6 +16,7 @@ const app = express();
 
 //app.use(queryLevelTracing)
 app.use(cors());
+app.use(express.json());
 
 const extensions = ({
   document,

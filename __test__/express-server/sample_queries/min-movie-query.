@@ -1,0 +1,6 @@
+query movies {
+  movies (first: 10) {
+    title
+    cast
+  }
+}
