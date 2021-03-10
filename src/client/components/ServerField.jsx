@@ -36,7 +36,7 @@ const ServerField = () => {
           }));
         })
         .catch((err) => {
-          setInfo((err) => ({
+          setInfo(() => ({
             ...info,
             response: err,
           }));
@@ -58,7 +58,7 @@ const ServerField = () => {
           }));
         })
         .catch((err) => {
-          setInfo((err) => ({
+          setInfo(() => ({
             ...info,
             response: err,
           }));
