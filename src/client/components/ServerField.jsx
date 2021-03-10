@@ -14,7 +14,7 @@ const ServerField = () => {
     const userURI = document.getElementById('server-input').value;
     //const userBody = document.getElementById('query-input').value;
     //const userVariables = document.getElementById('variable-input').value;
-    const reqType = userBody.substr(0, userBody.indexOf(' ')).toLowerCase();
+    const reqType = info.body.substr(0, info.body.indexOf(' ')).toLowerCase();
 
     // Instantiate a new Apollo Client corresponding to the Apollo Server located @ uri
     const client = new ApolloClient({
@@ -27,7 +27,7 @@ const ServerField = () => {
       client
         .mutate({
           mutation: gql`
-            ${userBody}
+            ${info.body}
           `,
         })
         .then((res) => {
@@ -49,7 +49,7 @@ const ServerField = () => {
       client
         .query({
           query: gql`
-            ${userBody}
+            ${info.body}
           `,
         })
         .then((res) => {
