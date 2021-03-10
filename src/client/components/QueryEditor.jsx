@@ -12,10 +12,9 @@ require('codemirror-graphql/lint');
 require("codemirror/lib/codemirror.css");
 require("../stylesheets/editor-theme.css");
 require('codemirror/addon/edit/closebrackets');
-require('codemirror/addon/display/placeholder');
 
 
-const VariableField = () => {
+export const QueryEditor = () => {
 
   const [info, setInfo] = useContext(GraphContext);
   
@@ -29,22 +28,21 @@ const VariableField = () => {
       tabSize: 2,
       styleActiveLine: true,
       viewportMargin: 99,
-      placeholder: 'Variables must be in JSON format'
     };
   
   const onChange = (editor, data, value) => {
     //this.setState({ value });
     setInfo(() => ({
       ...info,
-      variables: value
+      body: value
     }));
   };
   return (
     <>
-    <h3> Variables:</h3>
+    <h3> Body:</h3>
     <CodeMirror
         //name="js"
-        value={info.variables}
+        value={info.body}
         options={DEFAULT_JSX_OPTIONS}
         onBeforeChange={onChange}
         onChange={(editor, metadata, value) => {
@@ -56,17 +54,3 @@ const VariableField = () => {
   );
 }
 
-
-
-// const VariableField = () => {
-//   const [info] = useContext(GraphContext);
-
-//   return (
-//     <div>
-//       <h2>Variable:</h2>
-//         <textarea id="variable-input" className="input" type="text" defaultValue={info.variables} />
-//     </div>
-//   );
-// };
-
-export default VariableField;

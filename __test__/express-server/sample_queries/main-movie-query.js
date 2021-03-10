@@ -1,4 +1,4 @@
-{
+query movies {
   movies {
     _id
     title
