@@ -10,10 +10,9 @@ const ServerField = () => {
   function handleClick(e) {
     e.preventDefault();
 
-    // Gather user input from 'Server', 'Query', and 'Variables' input fields
+    // Gather user input from 'Server', 'Query', and 'Variables' input fields; determine request 'type'
     const userURI = document.getElementById('server-input').value;
     const userBody = document.getElementById('query-input').value;
-    const userVariables = document.getElementById('variable-input').value;
     const reqType = userBody.substr(0, userBody.indexOf(' ')).toLowerCase();
 
     // Instantiate a new Apollo Client corresponding to the Apollo Server located @ uri
@@ -68,7 +67,6 @@ const ServerField = () => {
 
     // Function to handle invalid user input
     const handleInvalid = () => {
-      // setInputs(prevInputs => Object.assign(prevInputs, {response: res.data.rates}));
       setInfo(() => ({
         ...info,
         response: 'Invalid Syntax',
