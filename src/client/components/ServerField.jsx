@@ -14,8 +14,7 @@ const ServerField = () => {
     const userURI = document.getElementById('server-input').value;
     const userBody = document.getElementById('query-input').value;
     const userVariables = document.getElementById('variable-input').value;
-    const type = userBody.substr(0, userBody.indexOf(' ')).toLowerCase();
-    console.log(type);
+    const reqType = userBody.substr(0, userBody.indexOf(' ')).toLowerCase();
 
     // Instantiate a new Apollo Client corresponding to the Apollo Server located @ uri
     const client = new ApolloClient({
@@ -77,8 +76,8 @@ const ServerField = () => {
     };
 
     // Determine if body input is a 'query' or 'mutation'
-    if (type === 'query') handleQuery();
-    else if (type === 'mutation') handleMutation();
+    if (reqType === 'query') handleQuery();
+    else if (reqType === 'mutation') handleMutation();
     else handleInvalid();
   }
   return (
