@@ -83,7 +83,7 @@ const ServerField = () => {
     <div className="server-field">
       <form>
         <label>
-          Query: 
+          <h3 className="query-title">Query:</h3> 
           <input id="server-input" className="input" type="text" defaultValue={info.uri} />
         </label>
         <button id="submit-query" className="btn-gray" type="submit" onClick={handleClick}>

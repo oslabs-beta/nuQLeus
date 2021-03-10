@@ -113,3 +113,7 @@ body {
   display: inline-flexbox;
   width: 100%;
 }
+
+.query-title {
+  display: inline;
+}
