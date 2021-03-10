@@ -1,19 +1,56 @@
+body {
+  font-family: -apple-system,BlinkMacSystemFont,segoe ui,roboto,oxygen,ubuntu,cantarell,fira sans,droid sans,helvetica neue,sans-serif;
+  background-color: rgb(1, 2, 11);
+  color: #eee;
+}
+
 /***** CONTAINERS *****/
 #main-container {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  border: 1px solid blue;
 }
 
 #left-container {
-  width: 50%;
-  border: 1px solid red;
+  width: 33%;
 }
 
 #middle-container {
-  width: 50%;
-  border: 1px solid green;
+  width: 33%;
+}
+
+#right-container {
+  width: 33%;
+  border: 1px solid yellow;
+}
+
+/***** CODEMIRROR *****/
+
+.CodeMirror {
+  min-height: 100%;
+  /* font-family: 'Ubuntu Mono', monospace !important; */
+  /* font-family: "IBM Plex Mono", monospace; */
+}
+
+.react-codemirror2 {
+  width: 95%;
+}
+
+.Resizer {
+  height: 100vh;
+  min-width: 2px;
+  background: #333;
+  cursor: row-resize;
+}
+
+/***** NAVBAR *****/
+
+.logo-img {
+  width: 250px
+}
+
+.nav-bar {
+  margin-bottom: 5px;
 }
 
 /***** INPUTS *****/
@@ -24,9 +61,35 @@
 #server-input {
   height: 1.2em;
   width: 60%;
+  background-color: rgb(19, 19, 37);
+  border: none;
+  color: white;
+  padding: 10px;
+  margin: 0px 10px;
 }
 
-#query-input {
+.btn-gray {
+  background-color: transparent;
+  text-indent: 0px;
+  text-shadow: none;
+  border:none;
+  margin-left: 10px;
+  background-color: #1c232f;
+  padding: 12px 30px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: #bec0c2;            
+  border-radius: 10px;
+  display: inline;
+}
+
+.btn-gray:hover {
+  background-color: #141a24;
+}
+
+/* #query-input {
   height: 6em;
   width: 95%;
 }
@@ -34,13 +97,19 @@
 #variable-input {
   height: 6em;
   width: 95%;
-}
+} */
 
 /***** OUTPUTS *****/
-#output-display {
-  height: 14em;
+
+.output-display {
+  height: 100%;
   width: 95%;
-  overflow: auto;
+  /* overflow: auto;
   overflow-wrap: break-word;
-  border: 1px solid purple;
+  border: 1px solid purple; */
+}
+
+.server-field {
+  display: inline-flexbox;
+  width: 100%;
 }

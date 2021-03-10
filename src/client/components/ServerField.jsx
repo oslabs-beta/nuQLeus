@@ -12,8 +12,8 @@ const ServerField = () => {
 
     // Gather user input from 'Server', 'Query', and 'Variables' input fields
     const userURI = document.getElementById('server-input').value;
-    const userBody = document.getElementById('query-input').value;
-    const userVariables = document.getElementById('variable-input').value;
+    //const userBody = document.getElementById('query-input').value;
+    //const userVariables = document.getElementById('variable-input').value;
 
     // Instantiate a new Apollo Client corresponding to the Apollo Server located @ uri
     const client = new ApolloClient({
@@ -25,7 +25,7 @@ const ServerField = () => {
     client
       .query({
         query: gql`
-          ${userBody}
+          ${info.body}
         `,
       })
       .then((res) => {
@@ -44,14 +44,14 @@ const ServerField = () => {
   }
 
   return (
-    <div>
+    <div className="server-field">
       <form>
         <label>
-          Server:
+          Query: 
           <input id="server-input" className="input" type="text" defaultValue={info.uri} />
         </label>
-        <button id="submit-query" type="submit" onClick={handleClick}>
-          Link
+        <button id="submit-query" className="btn-gray" type="submit" onClick={handleClick}>
+          Send
         </button>
       </form>
     </div>

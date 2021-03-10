@@ -6,6 +6,7 @@ const { ResponsePath, responsePathAsArray, GraphQLType } = require('graphql');
 const queryLevelTracing = require('./controllers/query-tracing');
 const fs = require('fs');
 const path = require('path');
+const cors = require('cors');
 
 const mongoose = require('mongoose');
 
@@ -14,6 +15,7 @@ const app = express();
 /** Initiate graphQL route **/ 
 
 //app.use(queryLevelTracing)
+app.use(cors());
 
 const extensions = ({
   document,

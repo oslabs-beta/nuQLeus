@@ -9,7 +9,6 @@ const LeftContainer = () => (
   <div id="left-container" className="container">
     <ServerField />
     <QueryEditor/>
-    <QueryField />
     <VariableField />
   </div>
 );
