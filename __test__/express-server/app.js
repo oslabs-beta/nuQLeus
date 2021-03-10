@@ -1,16 +1,17 @@
 const express = require('express');
 const { graphqlHTTP } = require('express-graphql');
+const cors = require('cors');
 const schema = require('./schema/schema');
 const { applyMiddleware } = require('graphql-middleware');
 const { ResponsePath, responsePathAsArray, GraphQLType } = require('graphql');
 const queryLevelTracing = require('./controllers/query-tracing');
 const fs = require('fs');
 const path = require('path');
-const cors = require('cors');
 
 const mongoose = require('mongoose');
 
 const app = express();
+app.use(cors());
 
 /** Initiate graphQL route **/ 
 
