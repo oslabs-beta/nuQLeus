@@ -14,6 +14,8 @@ const ServerField = () => {
     const userURI = document.getElementById('server-input').value;
     const userBody = document.getElementById('query-input').value;
     const userVariables = document.getElementById('variable-input').value;
+    const type = userBody.substr(0, userBody.indexOf(' ')).toLowerCase();
+    console.log(type);
 
     // Instantiate a new Apollo Client corresponding to the Apollo Server located @ uri
     const client = new ApolloClient({
@@ -22,27 +24,54 @@ const ServerField = () => {
     });
 
     // Format and send the user's query to the Apollo Server
-    client
-      .query({
-        query: gql`
-          ${userBody}
-        `,
-      })
-      .then((res) => {
-        // setInputs(prevInputs => Object.assign(prevInputs, {response: res.data.rates}));
-        setInfo(() => ({
-          ...info,
-          response: res.data,
-        }));
-      })
-      .catch(() => {
-        setInfo(() => ({
-          ...info,
-          response: 'Query failed.',
-        }));
-      });
-  }
+    const handleMutation = () => {
+      client
+        .mutate({
+          mutation: gql`
+            ${userBody}
+          `,
+        })
+        .then((res) => {
+          // setInputs(prevInputs => Object.assign(prevInputs, {response: res.data.rates}));
+          setInfo(() => ({
+            ...info,
+            response: res.data,
+          }));
+        })
+        .catch(() => {
+          setInfo(() => ({
+            ...info,
+            response: 'Query failed.',
+          }));
+        });
+    };
 
+    const handleQuery = () => {
+      client
+        .query({
+          query: gql`
+            ${userBody}
+          `,
+        })
+        .then((res) => {
+          // setInputs(prevInputs => Object.assign(prevInputs, {response: res.data.rates}));
+          setInfo(() => ({
+            ...info,
+            response: res.data,
+          }));
+        })
+        .catch(() => {
+          setInfo(() => ({
+            ...info,
+            response: 'Query failed.',
+          }));
+        });
+    };
+
+    // Determine if body input is a 'query' or 'mutation'
+    if (type === 'query') handleQuery();
+    if (type === 'mutation') handleMutation();
+  }
   return (
     <div>
       <form>
