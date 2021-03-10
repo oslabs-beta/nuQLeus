@@ -35,10 +35,10 @@ const ServerField = () => {
             response: res.data,
           }));
         })
-        .catch(() => {
-          setInfo(() => ({
+        .catch((err) => {
+          setInfo((err) => ({
             ...info,
-            response: 'Query failed.',
+            response: err,
           }));
         });
     };
@@ -57,10 +57,10 @@ const ServerField = () => {
             response: res.data,
           }));
         })
-        .catch(() => {
-          setInfo(() => ({
+        .catch((err) => {
+          setInfo((err) => ({
             ...info,
-            response: 'Query failed.',
+            response: err,
           }));
         });
     };
