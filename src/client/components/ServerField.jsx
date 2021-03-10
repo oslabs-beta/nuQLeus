@@ -78,7 +78,7 @@ const ServerField = () => {
 
     // Determine if body input is a 'query' or 'mutation'
     if (type === 'query') handleQuery();
-    if (type === 'mutation') handleMutation();
+    else if (type === 'mutation') handleMutation();
     else handleInvalid();
   }
   return (
