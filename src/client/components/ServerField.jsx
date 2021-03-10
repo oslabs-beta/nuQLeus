@@ -23,7 +23,7 @@ const ServerField = () => {
       cache: new InMemoryCache(),
     });
 
-    // Format and send the user's query to the Apollo Server
+    // Function to send the user's mutation to the Apollo Server
     const handleMutation = () => {
       client
         .mutate({
@@ -32,7 +32,6 @@ const ServerField = () => {
           `,
         })
         .then((res) => {
-          // setInputs(prevInputs => Object.assign(prevInputs, {response: res.data.rates}));
           setInfo(() => ({
             ...info,
             response: res.data,
@@ -46,6 +45,7 @@ const ServerField = () => {
         });
     };
 
+    // Function to send the user's query to the Apollo Server
     const handleQuery = () => {
       client
         .query({
@@ -54,7 +54,6 @@ const ServerField = () => {
           `,
         })
         .then((res) => {
-          // setInputs(prevInputs => Object.assign(prevInputs, {response: res.data.rates}));
           setInfo(() => ({
             ...info,
             response: res.data,
@@ -68,9 +67,19 @@ const ServerField = () => {
         });
     };
 
+    // Function to handle invalid user input
+    const handleInvalid = () => {
+      // setInputs(prevInputs => Object.assign(prevInputs, {response: res.data.rates}));
+      setInfo(() => ({
+        ...info,
+        response: 'Invalid Syntax',
+      }));
+    };
+
     // Determine if body input is a 'query' or 'mutation'
     if (type === 'query') handleQuery();
     if (type === 'mutation') handleMutation();
+    else handleInvalid();
   }
   return (
     <div>
