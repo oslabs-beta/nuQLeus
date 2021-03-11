@@ -1,23 +1,51 @@
 [
   {
-    "startTime": 1615341263455,
-    "endTime": 1615341263501,
-    "fieldName": "addComment",
-    "duration": 46,
-    "operation": "mutation"
-  }
-]  {
-    "startTime": 1615341263502,
-    "endTime": 1615341263502,
-    "fieldName": "_id",
-    "duration": 0,
-    "operation": "mutation"
+    "startTime": 1615430683890,
+    "endTime": 1615430684286,
+    "fieldName": "comment",
+    "duration": 396,
+    "operation": "query"
   },
   {
-    "startTime": 1615341263502,
-    "endTime": 1615341263502,
-    "fieldName": "text",
+    "startTime": 1615430684287,
+    "endTime": 1615430684287,
+    "fieldName": "_id",
     "duration": 0,
-    "operation": "mutation"
+    "operation": "query"
+  },
+  {
+    "startTime": 1615430684287,
+    "endTime": 1615430684287,
+    "fieldName": "name",
+    "duration": 0,
+    "operation": "query"
+  },
+  {
+    "startTime": 1615430684287,
+    "endTime": 1615430684288,
+    "fieldName": "email",
+    "duration": 1,
+    "operation": "query"
+  },
+  {
+    "startTime": 1615430684287,
+    "endTime": 1615430684288,
+    "fieldName": "text",
+    "duration": 1,
+    "operation": "query"
+  }
+]  {
+    "startTime": 1615430684287,
+    "endTime": 1615430684288,
+    "fieldName": "date",
+    "duration": 1,
+    "operation": "query"
+  },
+  {
+    "startTime": 1615430684287,
+    "endTime": 1615430684288,
+    "fieldName": "movie_id",
+    "duration": 1,
+    "operation": "query"
   }
 ]
