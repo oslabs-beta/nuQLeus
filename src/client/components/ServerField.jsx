@@ -64,8 +64,10 @@ const ServerField = () => {
         .then((res) => {
           setInfo(() => ({
             ...info,
-            response: res.data,
+            response: res,
             extensions: res.extensions,
+            queryTime: queryTime(res.extensions),
+            resolverTime: resolverTime(res.extensions.nuQLeusTracing.resolvers),
           }));
         })
       .catch((err) => {
@@ -91,7 +93,7 @@ const ServerField = () => {
         .then((res) => {
           setInfo(() => ({
             ...info,
-            response: res.data,
+            response: res,
             extensions: res.extensions,
             queryTime: queryTime(res.extensions),
             resolverTime: resolverTime(res.extensions.nuQLeusTracing.resolvers),
