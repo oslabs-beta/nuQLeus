@@ -1,147 +1,77 @@
 [
   {
-    "startTime": 1615409275295,
-    "endTime": 1615409275381,
+    "startTime": 1615430194705,
+    "endTime": 1615430194744,
     "fieldName": "movies",
-    "duration": 86,
+    "duration": 39,
     "operation": "query"
   },
   {
-    "startTime": 1615409275381,
-    "endTime": 1615409275382,
+    "startTime": 1615430194744,
+    "endTime": 1615430194745,
     "fieldName": "title",
     "duration": 1,
     "operation": "query"
   },
   {
-    "startTime": 1615409275381,
-    "endTime": 1615409275382,
+    "startTime": 1615430194744,
+    "endTime": 1615430194745,
     "fieldName": "cast",
     "duration": 1,
     "operation": "query"
   },
   {
-    "startTime": 1615409275381,
-    "endTime": 1615409275382,
+    "startTime": 1615430194744,
+    "endTime": 1615430194745,
     "fieldName": "title",
     "duration": 1,
     "operation": "query"
   },
   {
-    "startTime": 1615409275381,
-    "endTime": 1615409275382,
+    "startTime": 1615430194744,
+    "endTime": 1615430194745,
+    "fieldName": "cast",
+    "duration": 1,
+    "operation": "query"
+  }
+]  {
+    "startTime": 1615430194744,
+    "endTime": 1615430194745,
+    "fieldName": "title",
+    "duration": 1,
+    "operation": "query"
+  },
+  {
+    "startTime": 1615430194744,
+    "endTime": 1615430194745,
     "fieldName": "cast",
     "duration": 1,
     "operation": "query"
   },
   {
-    "startTime": 1615409275382,
-    "endTime": 1615409275382,
+    "startTime": 1615430194745,
+    "endTime": 1615430194745,
     "fieldName": "title",
     "duration": 0,
     "operation": "query"
   },
   {
-    "startTime": 1615409275382,
-    "endTime": 1615409275382,
+    "startTime": 1615430194745,
+    "endTime": 1615430194745,
     "fieldName": "cast",
     "duration": 0,
     "operation": "query"
   },
   {
-    "startTime": 1615409275382,
-    "endTime": 1615409275382,
+    "startTime": 1615430194745,
+    "endTime": 1615430194745,
     "fieldName": "title",
     "duration": 0,
     "operation": "query"
   },
   {
-    "startTime": 1615409275382,
-    "endTime": 1615409275382,
-    "fieldName": "cast",
-    "duration": 0,
-    "operation": "query"
-  },
-  {
-    "startTime": 1615409275382,
-    "endTime": 1615409275382,
-    "fieldName": "title",
-    "duration": 0,
-    "operation": "query"
-  },
-  {
-    "startTime": 1615409275382,
-    "endTime": 1615409275382,
-    "fieldName": "cast",
-    "duration": 0,
-    "operation": "query"
-  },
-  {
-    "startTime": 1615409275382,
-    "endTime": 1615409275382,
-    "fieldName": "title",
-    "duration": 0,
-    "operation": "query"
-  },
-  {
-    "startTime": 1615409275382,
-    "endTime": 1615409275382,
-    "fieldName": "cast",
-    "duration": 0,
-    "operation": "query"
-  },
-  {
-    "startTime": 1615409275382,
-    "endTime": 1615409275382,
-    "fieldName": "title",
-    "duration": 0,
-    "operation": "query"
-  },
-  {
-    "startTime": 1615409275382,
-    "endTime": 1615409275382,
-    "fieldName": "cast",
-    "duration": 0,
-    "operation": "query"
-  },
-  {
-    "startTime": 1615409275382,
-    "endTime": 1615409275382,
-    "fieldName": "title",
-    "duration": 0,
-    "operation": "query"
-  },
-  {
-    "startTime": 1615409275382,
-    "endTime": 1615409275382,
-    "fieldName": "cast",
-    "duration": 0,
-    "operation": "query"
-  },
-  {
-    "startTime": 1615409275382,
-    "endTime": 1615409275382,
-    "fieldName": "title",
-    "duration": 0,
-    "operation": "query"
-  },
-  {
-    "startTime": 1615409275382,
-    "endTime": 1615409275382,
-    "fieldName": "cast",
-    "duration": 0,
-    "operation": "query"
-  },
-  {
-    "startTime": 1615409275382,
-    "endTime": 1615409275382,
-    "fieldName": "title",
-    "duration": 0,
-    "operation": "query"
-  },
-  {
-    "startTime": 1615409275382,
-    "endTime": 1615409275382,
+    "startTime": 1615430194745,
+    "endTime": 1615430194745,
     "fieldName": "cast",
     "duration": 0,
     "operation": "query"

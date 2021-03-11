@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { Controlled as CodeMirror } from 'react-codemirror2';
 import { GraphContext } from '../contexts/GraphContext';
 
@@ -13,13 +12,14 @@ require('codemirror/lib/codemirror.css');
 require('../stylesheets/editor-theme.css');
 require('codemirror/addon/edit/closebrackets');
 
-const QueryEditor = () => {
+const ExtensionDisplay = () => {
   const [info, setInfo] = useContext(GraphContext);
+
   const DEFAULT_JSX_OPTIONS = {
     theme: 'custom-0',
     autoCloseBrackets: true,
     cursorScrollMargin: 48,
-    mode: 'graphql',
+    mode: 'javascript',
     lineNumbers: true,
     indentUnit: 2,
     tabSize: 2,
@@ -27,28 +27,21 @@ const QueryEditor = () => {
     viewportMargin: 99,
   };
 
-  const onChange = (editor, data, value) => {
-    // this.setState({ value });
-    setInfo(() => ({
-      ...info,
-      body: value,
-    }));
-  };
-
   return (
     <>
-      <h3>Body:</h3>
       <CodeMirror
-        // name="js"
-        value={info.body}
+        className="extension-display"
+        value={info.extensions ? JSON.stringify(info.extensions, null, 2) : null}
         options={DEFAULT_JSX_OPTIONS}
-        onBeforeChange={onChange}
+        onBeforeChange={(editor, metadata, value) => {
+          value = info.extensions;
+        }}
         onChange={(editor, metadata, value) => {
-          // final value, no need to setState here
+          value = info.extensions;
         }}
       />
     </>
   );
 };
 
-export default QueryEditor;
+export default ExtensionDisplay;

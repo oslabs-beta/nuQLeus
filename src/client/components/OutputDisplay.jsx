@@ -1,37 +1,35 @@
 import React, { useContext } from 'react';
+import { Controlled as CodeMirror } from 'react-codemirror2';
 import { GraphContext } from '../contexts/GraphContext';
-import { Controlled as CodeMirror } from "react-codemirror2";
 
-require("codemirror/mode/xml/xml");
-require("codemirror/mode/javascript/javascript");
-require("codemirror-graphql/mode");
-require("codemirror/mode/jsx/jsx");
+require('codemirror/mode/xml/xml');
+require('codemirror/mode/javascript/javascript');
+require('codemirror-graphql/mode');
+require('codemirror/mode/jsx/jsx');
 require('codemirror-graphql/hint');
 require('codemirror-graphql/lint');
-require("codemirror/lib/codemirror.css");
-require("../stylesheets/editor-theme.css");
+require('codemirror/lib/codemirror.css');
+require('../stylesheets/editor-theme.css');
 require('codemirror/addon/edit/closebrackets');
 
-
 const OutputDisplay = () => {
-
   const [info, setInfo] = useContext(GraphContext);
-  
-    const DEFAULT_JSX_OPTIONS = {
-      theme: "custom-0",
-      autoCloseBrackets: true,
-      cursorScrollMargin: 48,
-      mode: "javascript",
-      lineNumbers: true,
-      indentUnit: 2,
-      tabSize: 2,
-      styleActiveLine: true,
-      viewportMargin: 99,
-    };
-  
+
+  const DEFAULT_JSX_OPTIONS = {
+    theme: 'custom-0',
+    autoCloseBrackets: true,
+    cursorScrollMargin: 48,
+    mode: 'javascript',
+    lineNumbers: true,
+    indentUnit: 2,
+    tabSize: 2,
+    styleActiveLine: true,
+    viewportMargin: 99,
+  };
+
   return (
     <>
-    <CodeMirror
+      <CodeMirror
         className="output-display"
         value={info.response ? JSON.stringify(info.response, null, 2) : null}
         options={DEFAULT_JSX_OPTIONS}
@@ -42,26 +40,8 @@ const OutputDisplay = () => {
           value = info.response;
         }}
       />
-        
-      </>
+    </>
   );
-}
-
-
-
-// const OutputDisplay = () => {
-//   const [info] = useContext(GraphContext);
-
-//   return (
-//     <div>
-//       <span>Output</span>
-//       <div id="output-display" className="output">
-//         {JSON.stringify(info.response)}
-//       </div>
-//     </div>
-//   );
-// };
-
-
+};
 
 export default OutputDisplay;
