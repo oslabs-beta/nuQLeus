@@ -6,6 +6,7 @@ const MainContainer = () => (
   <div id='main-container' className='container'>
     <LeftContainer />
     <MiddleContainer />
+    <RightContainer />
   </div>
 );
 

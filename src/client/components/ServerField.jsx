@@ -12,8 +12,9 @@ const ServerField = () => {
 
     // Gather user input from 'Server', 'Query', and 'Variables' input fields; determine request 'type'
     const userURI = document.getElementById('server-input').value;
-    const userBody = document.getElementById('query-input').value;
-    const reqType = userBody.substr(0, userBody.indexOf(' ')).toLowerCase();
+    //const userBody = document.getElementById('query-input').value;
+    //const userVariables = document.getElementById('variable-input').value;
+    const reqType = info.body.substr(0, info.body.indexOf(' ')).toLowerCase();
 
     // Instantiate a new Apollo Client corresponding to the Apollo Server located @ uri
     const client = new ApolloClient({
@@ -26,7 +27,7 @@ const ServerField = () => {
       client
         .mutate({
           mutation: gql`
-            ${userBody}
+            ${info.body}
           `,
         })
         .then((res) => {
@@ -48,7 +49,7 @@ const ServerField = () => {
       client
         .query({
           query: gql`
-            ${userBody}
+            ${info.body}
           `,
         })
         .then((res) => {
@@ -79,14 +80,14 @@ const ServerField = () => {
     else handleInvalid();
   }
   return (
-    <div>
+    <div className="server-field">
       <form>
         <label>
-          Server:
+          <h3 className="query-title">Query:</h3> 
           <input id="server-input" className="input" type="text" defaultValue={info.uri} />
         </label>
-        <button id="submit-query" type="submit" onClick={handleClick}>
-          Link
+        <button id="submit-query" className="btn-gray" type="submit" onClick={handleClick}>
+          Send
         </button>
       </form>
     </div>

@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+const mongoose = require("mongoose");
+const { Schema } = mongoose;
+
+const ListingAndReviewsSchema = new Schema({
+=======
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
@@ -8,6 +14,7 @@ const ListingAndReviewsSchema = new Schema({
     trim: true,
   },
 
+>>>>>>> main
   listing_url: {
     type: String,
     trim: true,
@@ -141,6 +148,12 @@ const ListingAndReviewsSchema = new Schema({
   },
 });
 
+<<<<<<< HEAD
+const Listing = mongoose.model("listing", ListingAndReviewsSchema);
+
+module.exports = { Listing };
+=======
 const Listing = mongoose.model('listing', ListingAndReviewsSchema);
 
 module.exports = { Listing };
+>>>>>>> main
