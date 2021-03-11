@@ -11,18 +11,12 @@ body {
   justify-content: space-evenly;
 }
 
-#left-container {
-  width: 33%;
-}
-
-#middle-container {
-  width: 33%;
-}
-
+#left-container, 
+#middle-container,
 #right-container {
   width: 33%;
-  border: 1px solid yellow;
 }
+
 
 /***** CODEMIRROR *****/
 
@@ -102,6 +96,14 @@ body {
 /***** OUTPUTS *****/
 
 .output-display {
+  height: 100%;
+  width: 95%;
+  /* overflow: auto;
+  overflow-wrap: break-word;
+  border: 1px solid purple; */
+}
+
+.extension-display {
   height: 100%;
   width: 95%;
   /* overflow: auto;

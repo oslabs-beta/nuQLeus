@@ -2,23 +2,28 @@ import React, { createContext, useState } from 'react';
 
 export const GraphContext = createContext();
 
-const sampleBody = `query GetRates {
-  rates(currency: "USD") {
-    currency
+const sampleBody = `query movies {
+  movies (first: 5) {
+    title
+    cast
   }
-}`;
+}
+`;
 
 export const GraphContextProvider = (props) => {
   const [info, setInfo] = useState({
-    uri: 'https://48p1r2roz4.sse.codesandbox.io',
+    uri: 'http://localhost:4000/graphql',
     body: sampleBody,
-    variables: '',
+    variables: '{"first": "5"}',
     response: '',
+    extensions: '',
+    queryTime: '',
+    resolverTime: ''
   });
 
   return (
     <GraphContext.Provider value={[ info, setInfo ]}>
       {props.children}
     </GraphContext.Provider>
-  )
+  );
 };

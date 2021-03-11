@@ -7,7 +7,9 @@ query {
     text
     date
     movie_id
-    movie
+    movie {
+      title
+    }
   }
 }
 
