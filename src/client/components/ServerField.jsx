@@ -14,23 +14,23 @@ const ServerField = () => {
     // Gather user input from 'Server', 'Query', and 'Variables' input fields; determine request 'type'
     const userURI = document.getElementById('server-input').value;
     // const userBody = document.getElementById('query-input').value;
-    const userVariables = JSON.parse(info.variables);
-    console.log(info.body);
+    // const userVariables = JSON.parse(info.variables);
+    // console.log(info.body);
     const reqType = info.body.substr(0, info.body.indexOf(' ')).toLowerCase();
-    console.log(userVariables);
+    // console.log(userVariables);
 
-    if (userVariables) {
-      const bodyArr = info.body.split(' ');
-      console.log(bodyArr);
-      // loop through array, if element === $+element, lookup element in userVariables and swap it for the current element
-      bodyArr.forEach((ele) => {
-        if (ele === `$${ele}`) {
-          ele = userVariables[ele.slice(1)];
-        }
-      });
-    }
+    // if (userVariables) {
+    //   const bodyArr = info.body.split(' ');
+    //   console.log(bodyArr);
+    //   // loop through array, if element === $+element, lookup element in userVariables and swap it for the current element
+    //   bodyArr.forEach((ele) => {
+    //     if (ele === `$${ele}`) {
+    //       ele = userVariables[ele.slice(1)];
+    //     }
+    //   });
+    // }
 
-    console.log(bodyArr);
+    // console.log(bodyArr);
 
     // Instantiate a new Apollo Client corresponding to the Apollo Server located @ uri
     // const client = new ApolloClient({
@@ -78,6 +78,7 @@ const ServerField = () => {
       })
         .then((r) => r.json())
         .then((res) => {
+          console.log(res.extensions)
           setInfo(() => ({
             ...info,
             response: res.data,
