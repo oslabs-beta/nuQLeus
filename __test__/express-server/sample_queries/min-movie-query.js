@@ -10,7 +10,7 @@ query movies {
 
 // 2nd Example
 query movies {
-  movies (first: 10) {
+  movies (first: 5) {
     title
     cast
   }
