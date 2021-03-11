@@ -16,6 +16,7 @@ export const GraphContextProvider = (props) => {
     body: sampleBody,
     variables: '{"first": "5"}',
     response: '',
+    extensions: '',
   });
 
   return (

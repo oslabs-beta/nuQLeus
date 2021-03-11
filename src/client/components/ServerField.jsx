@@ -22,7 +22,15 @@ const ServerField = () => {
     if (userVariables) {
       const bodyArr = info.body.split(' ');
       console.log(bodyArr);
+      // loop through array, if element === $+element, lookup element in userVariables and swap it for the current element
+      bodyArr.forEach((ele) => {
+        if (ele === `$${ele}`) {
+          ele = userVariables[ele.slice(1)];
+        }
+      });
     }
+
+    console.log(bodyArr);
 
     // Instantiate a new Apollo Client corresponding to the Apollo Server located @ uri
     // const client = new ApolloClient({
@@ -46,6 +54,7 @@ const ServerField = () => {
           setInfo(() => ({
             ...info,
             response: res.data,
+            extensions: res.extensions,
           }));
         })
         .catch((err) => {
@@ -69,10 +78,9 @@ const ServerField = () => {
       })
         .then((r) => r.json())
         .then((res) => {
-          console.log('TESTING: ', res);
           setInfo(() => ({
             ...info,
-            response: res,
+            response: res.data,
             extensions: res.extensions,
           }));
         })

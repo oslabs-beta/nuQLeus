@@ -1,77 +1,77 @@
 [
   {
-    "startTime": 1615430194705,
-    "endTime": 1615430194744,
+    "startTime": 1615432286457,
+    "endTime": 1615432286495,
     "fieldName": "movies",
-    "duration": 39,
+    "duration": 38,
     "operation": "query"
   },
   {
-    "startTime": 1615430194744,
-    "endTime": 1615430194745,
+    "startTime": 1615432286496,
+    "endTime": 1615432286496,
     "fieldName": "title",
-    "duration": 1,
+    "duration": 0,
     "operation": "query"
   },
   {
-    "startTime": 1615430194744,
-    "endTime": 1615430194745,
+    "startTime": 1615432286496,
+    "endTime": 1615432286496,
     "fieldName": "cast",
-    "duration": 1,
+    "duration": 0,
     "operation": "query"
   },
   {
-    "startTime": 1615430194744,
-    "endTime": 1615430194745,
+    "startTime": 1615432286496,
+    "endTime": 1615432286496,
     "fieldName": "title",
-    "duration": 1,
+    "duration": 0,
     "operation": "query"
   },
   {
-    "startTime": 1615430194744,
-    "endTime": 1615430194745,
+    "startTime": 1615432286496,
+    "endTime": 1615432286496,
     "fieldName": "cast",
-    "duration": 1,
+    "duration": 0,
     "operation": "query"
   }
 ]  {
-    "startTime": 1615430194744,
-    "endTime": 1615430194745,
-    "fieldName": "title",
-    "duration": 1,
-    "operation": "query"
-  },
-  {
-    "startTime": 1615430194744,
-    "endTime": 1615430194745,
-    "fieldName": "cast",
-    "duration": 1,
-    "operation": "query"
-  },
-  {
-    "startTime": 1615430194745,
-    "endTime": 1615430194745,
+    "startTime": 1615432286496,
+    "endTime": 1615432286496,
     "fieldName": "title",
     "duration": 0,
     "operation": "query"
   },
   {
-    "startTime": 1615430194745,
-    "endTime": 1615430194745,
+    "startTime": 1615432286496,
+    "endTime": 1615432286496,
     "fieldName": "cast",
     "duration": 0,
     "operation": "query"
   },
   {
-    "startTime": 1615430194745,
-    "endTime": 1615430194745,
+    "startTime": 1615432286496,
+    "endTime": 1615432286496,
     "fieldName": "title",
     "duration": 0,
     "operation": "query"
   },
   {
-    "startTime": 1615430194745,
-    "endTime": 1615430194745,
+    "startTime": 1615432286496,
+    "endTime": 1615432286496,
+    "fieldName": "cast",
+    "duration": 0,
+    "operation": "query"
+  },
+  {
+    "startTime": 1615432286496,
+    "endTime": 1615432286496,
+    "fieldName": "title",
+    "duration": 0,
+    "operation": "query"
+  },
+  {
+    "startTime": 1615432286496,
+    "endTime": 1615432286496,
     "fieldName": "cast",
     "duration": 0,
     "operation": "query"
