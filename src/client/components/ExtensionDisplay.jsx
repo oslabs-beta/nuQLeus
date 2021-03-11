@@ -12,7 +12,7 @@ require('codemirror/lib/codemirror.css');
 require('../stylesheets/editor-theme.css');
 require('codemirror/addon/edit/closebrackets');
 
-const OutputDisplay = () => {
+const ExtensionDisplay = () => {
   const [info, setInfo] = useContext(GraphContext);
 
   const DEFAULT_JSX_OPTIONS = {
@@ -29,20 +29,19 @@ const OutputDisplay = () => {
 
   return (
     <>
-      <h3>Response:</h3>
       <CodeMirror
-        className="output-display"
-        value={info.response ? JSON.stringify(info.response, null, 2) : null}
+        className="extension-display"
+        value={info.extensions ? JSON.stringify(info.extensions, null, 2) : null}
         options={DEFAULT_JSX_OPTIONS}
         onBeforeChange={(editor, metadata, value) => {
-          value = info.response;
+          value = info.extensions;
         }}
         onChange={(editor, metadata, value) => {
-          value = info.response;
+          value = info.extensions;
         }}
       />
     </>
   );
 };
 
-export default OutputDisplay;
+export default ExtensionDisplay;
