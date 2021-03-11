@@ -7,36 +7,47 @@ const ServerField = () => {
   // Pull state into component from ApolloContext using 'useContext' hook
   const [info, setInfo] = useContext(GraphContext);
 
+  function queryTime(extensions) {
+    // Grab variables from nuQLeusTracing field:
+    const { startTime, endTime, duration } = extensions.nuQLeusTracing
+    const queryResponseTime = duration;
+    return { startTime, endTime, duration };
+  }
+  
+  // Resolvers is an array of resolver objects
+  function resolverTime(resolvers) {
+    const averageResolverResponse = []
+    const cache = {}
+  
+    for (let i = 0; i < resolvers.length; i++) {
+      const parentType = resolvers[i].parentType;
+      const fieldName = resolvers[i].fieldName;
+      const key = parentType + '-' + fieldName;
+      if (!cache[key]) cache[key] = [];
+      cache[key].push(resolvers[i].duration);
+    }
+  
+    for (let key in cache) {
+      const keys = key.split('-');
+      const obj = {
+        parentType: keys[0],
+        fieldName: keys[1],
+        durations: cache[key],
+        average: cache[key].reduce((a, b) => a + b) / cache[key].length
+      }
+      averageResolverResponse.push(obj);
+    }
+  
+    return averageResolverResponse;
+  }
+
   // Invokes query to the Apollo client
   function handleClick(e) {
     e.preventDefault();
 
     // Gather user input from 'Server', 'Query', and 'Variables' input fields; determine request 'type'
     const userURI = document.getElementById('server-input').value;
-    // const userBody = document.getElementById('query-input').value;
-    // const userVariables = JSON.parse(info.variables);
-    // console.log(info.body);
     const reqType = info.body.substr(0, info.body.indexOf(' ')).toLowerCase();
-    // console.log(userVariables);
-
-    // if (userVariables) {
-    //   const bodyArr = info.body.split(' ');
-    //   console.log(bodyArr);
-    //   // loop through array, if element === $+element, lookup element in userVariables and swap it for the current element
-    //   bodyArr.forEach((ele) => {
-    //     if (ele === `$${ele}`) {
-    //       ele = userVariables[ele.slice(1)];
-    //     }
-    //   });
-    // }
-
-    // console.log(bodyArr);
-
-    // Instantiate a new Apollo Client corresponding to the Apollo Server located @ uri
-    // const client = new ApolloClient({
-    //   uri: userURI,
-    //   cache: new InMemoryCache(),
-    // });
 
     // Function to send the user's mutation to the Apollo Server
     const handleMutation = () => {
@@ -78,11 +89,12 @@ const ServerField = () => {
       })
         .then((r) => r.json())
         .then((res) => {
-          console.log(res.extensions)
           setInfo(() => ({
             ...info,
             response: res.data,
             extensions: res.extensions,
+            queryTime: queryTime(res.extensions),
+            resolverTime: resolverTime(res.extensions.nuQLeusTracing.resolvers),
           }));
         })
         .catch((err) => {

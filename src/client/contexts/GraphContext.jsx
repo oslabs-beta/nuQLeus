@@ -17,6 +17,8 @@ export const GraphContextProvider = (props) => {
     variables: '{"first": "5"}',
     response: '',
     extensions: '',
+    queryTime: '',
+    resolverTime: ''
   });
 
   return (
