@@ -26,7 +26,6 @@ const QueryEditor = () => {
     styleActiveLine: true,
     viewportMargin: 99,
   };
-
   const onChange = (editor, data, value) => {
     // this.setState({ value });
     setInfo(() => ({

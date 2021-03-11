@@ -7,12 +7,49 @@ const ServerField = () => {
   const [info, setInfo] = useContext(GraphContext);
 
   // Invokes query to the GraphQL server/API
+  function queryTime(extensions) {
+    // Grab variables from nuQLeusTracing field:
+    const { startTime, endTime, duration } = extensions.nuQLeusTracing;
+    const queryResponseTime = duration;
+    return { startTime, endTime, duration };
+  }
+
+  // Resolvers is an array of resolver objects
+  function resolverTime(resolvers) {
+    const averageResolverResponse = [];
+    const cache = {};
+
+    for (let i = 0; i < resolvers.length; i++) {
+      const { parentType } = resolvers[i];
+      const { fieldName } = resolvers[i];
+      const key = `${parentType}-${fieldName}`;
+      if (!cache[key]) cache[key] = [];
+      cache[key].push(resolvers[i].duration);
+    }
+
+    for (const key in cache) {
+      const keys = key.split('-');
+      const obj = {
+        parentType: keys[0],
+        fieldName: keys[1],
+        durations: cache[key],
+        average: Math.round((cache[key].reduce((a, b) => a + b) / cache[key].length) * 100) / 100,
+      };
+      averageResolverResponse.push(obj);
+    }
+
+    return averageResolverResponse;
+  }
+
+  // Invokes query to the Apollo client
   function handleClick(e) {
     e.preventDefault();
 
     // Gather user input from 'Server', 'Query', and 'Variables' input fields; determine request 'type'
     const userURI = document.getElementById('server-input').value;
-    const userVariables = JSON.parse(info.variables);
+    let userVariables;
+    if (info.variables === '') userVariables = {};
+    else userVariables = JSON.parse(info.variables);
 
     // Function to send the user's query to the GraphQL server/API
     const handleRequest = () => {
@@ -36,8 +73,10 @@ const ServerField = () => {
         .then((res) => {
           setInfo(() => ({
             ...info,
-            response: res.data,
+            response: res,
             extensions: res.extensions,
+            queryTime: queryTime(res.extensions),
+            resolverTime: resolverTime(res.extensions.nuQLeusTracing.resolvers),
           }));
         })
         .catch((error) => {

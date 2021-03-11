@@ -66,8 +66,8 @@ const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLInt, GraphQLList,
       num_mflix_comments: { type: GraphQLInt },
       comments: { 
         type: new GraphQLList(CommentType),
-        resolve(parent, args) {
-          return Comment.find({ movie_id: parent._id })
+        async resolve(parent, args) {
+          return await Comment.find({ movie_id: parent._id })
         }
       }
     })
@@ -82,8 +82,8 @@ const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLInt, GraphQLList,
       movie_id: { type: GraphQLString },
       movie: { 
         type: MovieType,
-        resolve(parent, args) {
-          return Movie.findById(parent.movie_id)
+        async resolve(parent, args) {
+          return await Movie.findById(parent.movie_id)
         }
       },
       text: { type: GraphQLString },

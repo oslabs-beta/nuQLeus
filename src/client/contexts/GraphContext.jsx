@@ -16,9 +16,11 @@ export const GraphContextProvider = (props) => {
   const [info, setInfo] = useState({
     uri: 'http://localhost:4000/graphql',
     body: sampleBody,
-    variables: '{}',
+    variables: '',
     response: '',
     extensions: '',
+    queryTime: '',
+    resolverTime: ''
   });
 
   return <GraphContext.Provider value={[info, setInfo]}>{props.children}</GraphContext.Provider>;
