@@ -81,7 +81,6 @@ const VisualDisplay = () => {
               ]}
             />
           }
-          
         />
         <VictoryAxis 
           tickValues={labelLen}
@@ -105,12 +104,6 @@ const VisualDisplay = () => {
       </VictoryChart>
     </>
   )
-
-
-  // y0 = y-axis = 0
-
-
-
 }
 
 export default VisualDisplay;
