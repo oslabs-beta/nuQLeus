@@ -29,6 +29,7 @@ const OutputDisplay = () => {
 
   return (
     <>
+      <h3>Response:</h3>
       <CodeMirror
         className="output-display"
         value={info.response ? JSON.stringify(info.response, null, 2) : null}

@@ -33,7 +33,7 @@ const ServerField = () => {
         parentType: keys[0],
         fieldName: keys[1],
         durations: cache[key],
-        average: cache[key].reduce((a, b) => a + b) / cache[key].length
+        average: Math.round((cache[key].reduce((a, b) => a + b) / cache[key].length) * 100) / 100,
       }
       averageResolverResponse.push(obj);
     }
