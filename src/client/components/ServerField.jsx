@@ -12,7 +12,6 @@ const ServerField = () => {
 
     // Gather user input from 'Server', 'Query', and 'Variables' input fields; determine request 'type'
     const userURI = document.getElementById('server-input').value;
-    //const userBody = document.getElementById('query-input').value;
     //const userVariables = document.getElementById('variable-input').value;
     const reqType = info.body.substr(0, info.body.indexOf(' ')).toLowerCase();
 
@@ -21,12 +20,12 @@ const ServerField = () => {
       uri: userURI,
       cache: new InMemoryCache(),
     });
-
-    // Function to send the user's mutation to the Apollo Server
-    const handleMutation = () => {
+    
+    // Function to send the user's query to the Apollo Server
+    const handleQuery = () => {
       client
-        .mutate({
-          mutation: gql`
+        .query({
+          query: gql`
             ${info.body}
           `,
         })
@@ -36,19 +35,19 @@ const ServerField = () => {
             response: res.data,
           }));
         })
-        .catch((err) => {
-          setInfo(() => ({
-            ...info,
-            response: err,
-          }));
-        });
+      .catch((err) => {
+        setInfo(() => ({
+          ...info,
+          response: err,
+        }));
+      });
     };
 
-    // Function to send the user's query to the Apollo Server
-    const handleQuery = () => {
+    // Function to send the user's mutation to the Apollo Server
+    const handleMutation = () => {
       client
-        .query({
-          query: gql`
+        .mutate({
+          mutation: gql`
             ${info.body}
           `,
         })
@@ -79,6 +78,7 @@ const ServerField = () => {
     else if (reqType === 'mutation') handleMutation();
     else handleInvalid();
   }
+
   return (
     <div className="server-field">
       <form>
