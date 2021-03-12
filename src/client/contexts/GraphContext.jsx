@@ -15,7 +15,7 @@ const sampleVar = '{"username": "zbrucker"}';
 export const GraphContextProvider = (props) => {
   const [info, setInfo] = useState({
     uri: 'http://localhost:4000/graphql',
-    body: sampleBody,
+    body: '',
     variables: '',
     response: '',
     extensions: '',

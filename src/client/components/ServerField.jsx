@@ -26,7 +26,7 @@ const ServerField = () => {
       if (!cache[key]) cache[key] = [];
       cache[key].push(resolvers[i].duration);
     }
-
+    
     for (const key in cache) {
       const keys = key.split('-');
       const obj = {
