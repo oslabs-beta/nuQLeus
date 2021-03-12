@@ -26,7 +26,7 @@ const ServerField = () => {
       if (!cache[key]) cache[key] = [];
       cache[key].push(resolvers[i].duration);
     }
-    
+
     for (const key in cache) {
       const keys = key.split('-');
       const obj = {
@@ -108,7 +108,7 @@ const ServerField = () => {
     <div className="server-field">
       <form>
         <label>
-          <h3 className="query-title">Query:</h3>
+          <h3 className="query-title">Server:</h3>
           <input id="server-input" className="input" type="text" defaultValue={info.uri} />
         </label>
         <button id="submit-query" className="btn-gray" type="submit" onClick={handleClick}>
