@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-//require("dotenv").config();
-const mongoose = require("mongoose");
-=======
 //require('dotenv').config();
 const mongoose = require('mongoose');
->>>>>>> main
 //const DATABASE_URL = process.env.DATABASE_URL;
 
 const connectDb = () => {
