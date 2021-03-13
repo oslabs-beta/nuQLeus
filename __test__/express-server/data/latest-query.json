@@ -1,6 +1,13 @@
 [
   {
 <<<<<<< HEAD
+    "startTime": 1615499493979,
+    "endTime": 1615499494025,
+    "fieldName": "addComment",
+    "duration": 46,
+    "operation": "mutation"
+=======
+<<<<<<< HEAD
     "startTime": 1615432286457,
     "endTime": 1615432286495,
 =======
@@ -22,19 +29,23 @@
     "fieldName": "movies",
     "duration": 38,
     "operation": "query"
+>>>>>>> main
   },
   {
-    "startTime": 1615432286496,
-    "endTime": 1615432286496,
-    "fieldName": "title",
+    "startTime": 1615499494025,
+    "endTime": 1615499494025,
+    "fieldName": "_id",
     "duration": 0,
-    "operation": "query"
+    "operation": "mutation"
   },
   {
-    "startTime": 1615432286496,
-    "endTime": 1615432286496,
-    "fieldName": "cast",
+    "startTime": 1615499494025,
+    "endTime": 1615499494025,
+    "fieldName": "text",
     "duration": 0,
+<<<<<<< HEAD
+    "operation": "mutation"
+=======
     "operation": "query"
   },
   {
@@ -134,5 +145,6 @@
     "duration": 0,
     "operation": "query"
 >>>>>>> 54ba10b39f94cab5a2779815919d460505c03b36
+>>>>>>> main
   }
 ]
