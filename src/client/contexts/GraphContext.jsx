@@ -10,20 +10,18 @@ const sampleBody = `query movies {
 }
 `;
 
+const sampleVar = '{"username": "zbrucker"}';
+
 export const GraphContextProvider = (props) => {
   const [info, setInfo] = useState({
     uri: 'http://localhost:4000/graphql',
     body: sampleBody,
-    variables: '{"first": "5"}',
+    variables: '',
     response: '',
     extensions: '',
     queryTime: '',
     resolverTime: ''
   });
 
-  return (
-    <GraphContext.Provider value={[ info, setInfo ]}>
-      {props.children}
-    </GraphContext.Provider>
-  );
+  return <GraphContext.Provider value={[info, setInfo]}>{props.children}</GraphContext.Provider>;
 };

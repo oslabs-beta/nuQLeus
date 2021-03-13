@@ -1,134 +1,21 @@
-
 .cm-s-custom-0 {
 	background: rgb(19, 19, 37);
 	color: rgb(173, 170, 204);  
 	font-weight: 300;
-	line-height: 1.6;
+	line-height: 1.4;
+	font-size: 14px;
 	font-family: "IBM Plex Mono", monospace;
-	letter-spacing: 0.425px;
-}
-
-	.cm-s-custom-0 .CodeMirror-cursor {
-		border-color: #fff;
-		outline: 1px solid #fff;
-	}
-	
-	.cm-s-custom-0 .CodeMirror-activeline-background {
-		background: rgba(240, 240, 255, 0.8);
-	}
-		
-	.cm-s-custom-0 .CodeMirror-selected {
-		background: rgba(55, 55, 77, 0.3);
-	}
-	
-	.cm-s-custom-0 .cm-comment {
-		font-style: italic;color: #676b79;
-	}
-	
-	.cm-s-custom-0 .cm-operator {
-		color: #f3f3f3;
-	}
-	
-	.cm-s-custom-0 .cm-string {
-		color: #c267f9;
-	}
-	
-	.cm-s-custom-0 .cm-string-2 {
-		color: #ffb86c;
-	}
-	
-	.cm-s-custom-0 .cm-tag {
-		color: #ff2c6d;
-	}
-	.cm-s-custom-0 .cm-meta {
-		color: #b084eb;
-	}
-
-	.cm-s-custom-0 .cm-number {
-		color: #ffb86c;
-		
-	} .cm-s-custom-0 .cm-atom {
-		color: #ff2c6d; 
-	} 
-	
-	.cm-s-custom-0 .cm-keyword {
-		color: #b095e4; 
-	} 
-	.cm-s-custom-0 .cm-variable {
-		color: #f73c91; 
-	} 
-	.cm-s-custom-0 .cm-variable-2 {
-		color: #ff9ac1; 
-	} 
-
-	.cm-s-custom-0 .cm-variable-3, .cm-s-custom-0 .cm-type {
-		color: #ff9ac1; 
-	} 
-	.cm-s-custom-0 .cm-def {
-		color: #e6e6e6; 
-	} 
-	.cm-s-custom-0 .cm-property {
-		color: #f3f3f3; 
-	} 
-	.cm-s-custom-0 .cm-unit {
-		color: #ffb86c; 
-	} 
-	.cm-s-custom-0 .cm-attribute {
-		color: #d8baea; 
-	} 
-	.cm-s-custom-0 .CodeMirror-matchingbracket {
-		border-bottom: 1px dotted #19f9d8;
-		padding-bottom: 2px;color: #e6e6e6; 
-	} 
-	.cm-s-custom-0 .CodeMirror-gutters {   
-		background: rgb(19, 19, 37);   
-		border-right-color: rgb(19, 19, 37);   
-		width: 40px;   margin-right: 9px; 
-	} 
-	.cm-s-custom-0 .CodeMirror-linenumber {   
-		color: rgb(173, 170, 204);   
-		opacity: 0.75;   
-		background: rgb(19, 19, 37);   
-		padding: 0 10px 0 4px;   
-		font-size: 14px;   
-		border-top: 2px solid transparent; 
-	} 
-		
-	.cm-s-custom-0 .CodeMirror-lines .CodeMirror-code div {   
-		padding-left: 2px; 
-	};
-
-/*
-	Name:       Panda Syntax
-	Author:     Siamak Mokhtari (http://github.com/siamak/)
-	CodeMirror template by Siamak Mokhtari (https://github.com/siamak/atom-panda-syntax)
-*/
-
-/* 
-
-.cm-s-custom-0 {
-	background: #292a2b;
-	color: #e6e6e6;
-	line-height: 1.5;
-	font-family: 'Operator Mono', 'Source Sans Pro', Menlo, Monaco, Consolas,
-		Courier New, monospace;
-}
-
-.cm-s-custom-0 {
-	background: #292a2b;
-	color: #e6e6e6;
-	line-height: 1.5;
-	font-family: 'Operator Mono', 'Source Sans Pro', Menlo, Monaco, Consolas,
-		Courier New, monospace;
+	letter-spacing: 0.41px;
 }
 .cm-s-custom-0 .CodeMirror-cursor {
-	border-color: red;
+	border-color: #fff;
+	outline: 1px solid #fff;
 }
 .cm-s-custom-0 .CodeMirror-activeline-background {
-	background: rgba(99, 123, 156, 0.1);
+	background: rgba(240, 240, 255, 0.8);
 }
 .cm-s-custom-0 .CodeMirror-selected {
-	background: #fff;
+	background: rgba(55, 55, 77, 0.3);
 }
 .cm-s-custom-0 .cm-comment {
 	font-style: italic;
@@ -138,7 +25,7 @@
 	color: #f3f3f3;
 }
 .cm-s-custom-0 .cm-string {
-	color: #19f9d8;
+	color: #c267f9;
 }
 .cm-s-custom-0 .cm-string-2 {
 	color: #ffb86c;
@@ -153,19 +40,18 @@
 	color: #ffb86c;
 }
 .cm-s-custom-0 .cm-atom {
-	color: #ff2c6d;
-}
+	color: #ff2c6d; 
+} 
 .cm-s-custom-0 .cm-keyword {
-	color: #ff75b5;
+	color: #b095e4; 
 }
 .cm-s-custom-0 .cm-variable {
-	color: #ffb86c;
+	color: #f73c91;
 }
 .cm-s-custom-0 .cm-variable-2 {
 	color: #ff9ac1;
 }
-.cm-s-custom-0 .cm-variable-3,
-.cm-s-custom-0 .cm-type {
+.cm-s-custom-0 .cm-variable-3, .cm-s-custom-0 .cm-type {
 	color: #ff9ac1;
 }
 .cm-s-custom-0 .cm-def {
@@ -178,18 +64,27 @@
 	color: #ffb86c;
 }
 .cm-s-custom-0 .cm-attribute {
-	color: #ffb86c;
+	color: #d8baea;
 }
 .cm-s-custom-0 .CodeMirror-matchingbracket {
 	border-bottom: 1px dotted #19f9d8;
 	padding-bottom: 2px;
 	color: #e6e6e6;
 }
-.cm-s-custom-0 .CodeMirror-gutters {
-	background: #292a2b;
-	border-right-color: rgba(255, 255, 255, 0.1);
+.cm-s-custom-0 .CodeMirror-gutters {   
+	background: rgb(19, 19, 37);   
+	border-right-color: rgb(19, 19, 37);   
+	width: 40px;
+	margin-right: 5px; 
 }
-.cm-s-custom-0 .CodeMirror-linenumber {
-	color: #e6e6e6;
-	opacity: 0.6;
-} */
+.cm-s-custom-0 .CodeMirror-linenumber {   
+	color: rgb(173, 170, 204);   
+	opacity: 0.75;   
+	background: rgb(19, 19, 37);   
+	padding: 0 8px 0 4px;   
+	font-size: 14px;   
+	border-top: 2px solid transparent; 
+}
+.cm-s-custom-0 .CodeMirror-lines .CodeMirror-code div {   
+	padding-left: 2px; 
+};

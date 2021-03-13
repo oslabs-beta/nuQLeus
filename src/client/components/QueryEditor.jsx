@@ -25,6 +25,13 @@ const QueryEditor = () => {
     tabSize: 2,
     styleActiveLine: true,
     viewportMargin: 99,
+    placeholder: 
+    `query movies {
+  movies (first: 10) {
+    title
+    cast
+  }
+}`
   };
   const onChange = (editor, data, value) => {
     // this.setState({ value });
