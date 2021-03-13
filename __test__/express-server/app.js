@@ -74,12 +74,12 @@ const schemaWithMiddleware = applyMiddleware(schema, logInput)
 
 app.use(
   '/graphql',
-  graphqlHTTP({
+  graphqlHTTP((request) => ({
       schema: schemaWithMiddleware,
       context: { startTime: Date.now(), queryTimes: [] }, 
       graphiql: true,
       extensions,
-    })
+    }))
 );
 
 /** Connect to MongoDB **/ 

@@ -7,7 +7,9 @@ query {
     text
     date
     movie_id
-    movie
+    movie {
+      title
+    }
   }
 }
 
@@ -25,3 +27,21 @@ query comments {
     }
   }
 }
+
+// Variable Example
+query comments ($id: ID!) {
+  comment(id: $id) {
+    _id
+    name
+    email
+    text
+    date
+    movie_id
+    movie {
+      title
+      cast
+    }
+  }
+}
+
+{"id": "5a9427648b0beebeb6957b18"}

@@ -6,62 +6,83 @@ const ServerField = () => {
   // Pull state into component from ApolloContext using 'useContext' hook
   const [info, setInfo] = useContext(GraphContext);
 
+  // Invokes query to the GraphQL server/API
+  function queryTime(extensions) {
+    // Grab variables from nuQLeusTracing field:
+    const { startTime, endTime, duration } = extensions.nuQLeusTracing;
+    const queryResponseTime = duration;
+    return { startTime, endTime, duration };
+  }
+
+  // Resolvers is an array of resolver objects
+  function resolverTime(resolvers) {
+    const averageResolverResponse = [];
+    const cache = {};
+
+    for (let i = 0; i < resolvers.length; i++) {
+      const { parentType } = resolvers[i];
+      const { fieldName } = resolvers[i];
+      const key = `${parentType}-${fieldName}`;
+      if (!cache[key]) cache[key] = [];
+      cache[key].push(resolvers[i].duration);
+    }
+
+    for (const key in cache) {
+      const keys = key.split('-');
+      const obj = {
+        parentType: keys[0],
+        fieldName: keys[1],
+        durations: cache[key],
+        average: Math.round((cache[key].reduce((a, b) => a + b) / cache[key].length) * 100) / 100,
+      };
+      averageResolverResponse.push(obj);
+    }
+
+    return averageResolverResponse;
+  }
+
   // Invokes query to the Apollo client
   function handleClick(e) {
     e.preventDefault();
 
     // Gather user input from 'Server', 'Query', and 'Variables' input fields; determine request 'type'
     const userURI = document.getElementById('server-input').value;
-    //const userBody = document.getElementById('query-input').value;
-    //const userVariables = document.getElementById('variable-input').value;
-    const reqType = info.body.substr(0, info.body.indexOf(' ')).toLowerCase();
+    let userVariables;
+    if (info.variables === '') userVariables = {};
+    else userVariables = JSON.parse(info.variables);
 
-    // Instantiate a new Apollo Client corresponding to the Apollo Server located @ uri
-    const client = new ApolloClient({
-      uri: userURI,
-      cache: new InMemoryCache(),
-    });
-
-    // Function to send the user's mutation to the Apollo Server
-    const handleMutation = () => {
-      client
-        .mutate({
-          mutation: gql`
-            ${info.body}
-          `,
+    // Function to send the user's query to the GraphQL server/API
+    const handleRequest = () => {
+      fetch(`${userURI}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          query: `${info.body}`,
+          variables: userVariables,
+        }),
+      })
+        .then((res) => {
+          if (!res.ok) {
+            throw Error(res.statusText);
+          }
+          return res;
         })
+        .then((res) => res.json())
         .then((res) => {
           setInfo(() => ({
             ...info,
-            response: res.data,
+            response: res,
+            extensions: res.extensions,
+            queryTime: queryTime(res.extensions),
+            resolverTime: resolverTime(res.extensions.nuQLeusTracing.resolvers),
           }));
         })
-        .catch((err) => {
+        .catch((error) => {
           setInfo(() => ({
             ...info,
-            response: err,
-          }));
-        });
-    };
-
-    // Function to send the user's query to the Apollo Server
-    const handleQuery = () => {
-      client
-        .query({
-          query: gql`
-            ${info.body}
-          `,
-        })
-        .then((res) => {
-          setInfo(() => ({
-            ...info,
-            response: res.data,
-          }));
-        })
-        .catch((err) => {
-          setInfo(() => ({
-            ...info,
-            response: err,
+            response: 'Request to API Unsuccessful.',
           }));
         });
     };
@@ -74,16 +95,20 @@ const ServerField = () => {
       }));
     };
 
-    // Determine if body input is a 'query' or 'mutation'
-    if (reqType === 'query') handleQuery();
-    else if (reqType === 'mutation') handleMutation();
-    else handleInvalid();
+    // Validate Input
+    if (
+      info.body.substring(0, 5).toLowerCase() === 'query'
+      || info.body.substring(0, 5).toLowerCase() === 'mutat'
+      || info.body[0] === '{'
+    ) {
+      handleRequest();
+    } else handleInvalid();
   }
   return (
     <div className="server-field">
       <form>
         <label>
-          <h3 className="query-title">Query:</h3> 
+          <h3 className="query-title">Server:</h3>
           <input id="server-input" className="input" type="text" defaultValue={info.uri} />
         </label>
         <button id="submit-query" className="btn-gray" type="submit" onClick={handleClick}>

@@ -4,4 +4,3 @@ mutation {
     text
   }
 }
-
