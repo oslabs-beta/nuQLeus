@@ -310,6 +310,7 @@ module.exports = gql`
   }
 
   type Query {
+    listing(_id: ID!): Listing
     listings: [Listing]
   }
 

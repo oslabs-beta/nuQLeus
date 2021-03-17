@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-//AnimalSchema
 const ListingAndReviewsSchema = new Schema({
   _id: {
     type: String,
@@ -68,15 +67,30 @@ const ListingAndReviewsSchema = new Schema({
     trim: true,
   },
 
-  room_type: { type: String, trim: true },
+  room_type: { 
+    type: String, 
+    trim: true 
+  },
 
-  bed_type: { type: String, trim: true },
+  bed_type: { 
+    type: String, 
+    trim: true 
+  },
 
-  minimum_nights: { type: String, trim: true },
+  minimum_nights: { 
+    type: String, 
+    trim: true 
+  },
 
-  maximum_nights: { type: String, trim: true },
+  maximum_nights: { 
+    type: String, 
+    trim: true 
+  },
 
-  cancellation_policy: { type: String, trim: true },
+  cancellation_policy: { 
+    type: String, 
+    trim: true 
+  },
 
   last_scraped: {
     type: Date,
@@ -86,11 +100,17 @@ const ListingAndReviewsSchema = new Schema({
     type: Date,
   },
 
-  accommodates: { type: Number },
+  accommodates: {
+    type: Number 
+  },
 
-  bedrooms: { type: Number },
+  bedrooms: {
+    type: Number
+  },
 
-  beds: { type: Number },
+  beds: {
+    type: Number
+  },
 
   number_of_reviews: {
     type: Number,
