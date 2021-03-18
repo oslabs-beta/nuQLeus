@@ -27,6 +27,8 @@ module.exports = (response) => {
     };
 
     context.nuqleusQueryTimes.push(resolverData);
+    console.log('TESTING: ', context.nuqleusQueryTimes);
+    console.log('RESULT: ', result);
     return result;
   };
 
