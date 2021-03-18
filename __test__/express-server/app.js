@@ -30,6 +30,8 @@ const newOptions = nuqleus.WrapOptions(options, extensions);
 
 app.use('/graphql', graphqlHTTP(newOptions));
 
+// app.use('/nuqleus', nuqleus.use);
+
 /** Connect to MongoDB * */
 
 mongoose

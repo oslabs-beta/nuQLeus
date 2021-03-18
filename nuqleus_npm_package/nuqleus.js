@@ -34,7 +34,6 @@ nuqleus.WrapOptions = (options, clientExtensions) => {
   };
 
   const extensions = ({ document, variables, operationName, result, context }) => {
-    const originalExt = clientExtensions({ document, variables, operationName, result, context }); // returns an object 
     // Create another callback that modifies that OGExt and return a single object 
     const nuqleusExt = ({ document, variables, operationName, result, context, }) => ({
     nuQLeusTracing: {
@@ -44,9 +43,12 @@ nuqleus.WrapOptions = (options, clientExtensions) => {
         resolvers: context.nuqleusQueryTimes,
       },
   });
-  
     const newExt = nuqleusExt({ document, variables, operationName, result, context });
-
+    // If clientExtensions does not exist, return nuqleus-tracing extensions
+    if (!clientExtensions) return newExt;
+    
+    // If clientExtensions do exist, then process existing clientExtensions and combine into a single object with nuqleus-tracing extensions
+    const originalExt = clientExtensions({ document, variables, operationName, result, context });  
     return {
       ...originalExt,
       ...newExt,
