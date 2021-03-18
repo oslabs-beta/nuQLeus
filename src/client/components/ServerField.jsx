@@ -63,28 +63,31 @@ const ServerField = () => {
           variables: userVariables,
         }),
       })
-        .then((res) => {
-          if (!res.ok) {
-            throw Error(res.statusText);
-          }
-          return res;
-        })
+        // .then((res) => {
+        //   if (!res.ok) {
+        //     throw Error(res.statusText);
+        //   }
+        //   return res;
+        // })
         .then((res) => res.json())
         .then((res) => {
-          setInfo(() => ({
-            ...info,
-            response: res,
-            extensions: res.extensions,
-            queryTime: queryTime(res.extensions),
-            resolverTime: resolverTime(res.extensions.nuQLeusTracing.resolvers),
-          }));
+          const extensionsExist = res.extensions ? true : false;
+
+          if (extensionsExist) {
+            setInfo(() => ({
+              ...info,
+              response: res.data,
+              extensions: res.extensions,
+              queryTime: queryTime(res.extensions),
+              resolverTime: resolverTime(res.extensions.nuQLeusTracing.resolvers),
+            }));
+          } else {
+            setInfo(() => ({
+              ...info,
+              response: res.data ? res.data: res,
+            }));
+          }
         })
-        .catch((error) => {
-          setInfo(() => ({
-            ...info,
-            response: 'Request to API Unsuccessful.',
-          }));
-        });
     };
 
     // Function to handle invalid user input
