@@ -30,7 +30,7 @@ const extensions = ({
       startTime: new Date(context.startTime).toISOString(),
       endTime: new Date(Date.now()).toISOString(),
       duration: Date.now() - context.startTime,
-      resolvers: context.queryTimes
+      resolvers: context.queryTimes,
     }
   };
 };
@@ -49,9 +49,9 @@ const logInput = async (resolve, root, args, context, info) => {
   let curPath = info.path;
   do {
     pathArray.push(curPath.key);
-    curPath = curPath.prev
+    curPath = curPath.prev;
   }
-  while (curPath)
+  while (curPath);
   
   const resolverData = {
     path: pathArray.reverse(),
@@ -62,15 +62,15 @@ const logInput = async (resolve, root, args, context, info) => {
     operation: info.operation.operation,
     parentType: info.parentType,
     returnType: info.returnType,
-  }
+  };
   //!context.queryTimes[info.fieldName] ? context.queryTimes[info.fieldName] = []: null;
   //context.queryTimes[info.fieldName].push(resolverData)
-  context.queryTimes.push(resolverData)
+  context.queryTimes.push(resolverData);
   //fs.writeFile(path.resolve(__dirname, './data/latest-query.json'), JSON.stringify(context.queryTimes), (err) => console.log(err));
   return result;
 }
 
-const schemaWithMiddleware = applyMiddleware(schema, logInput)
+const schemaWithMiddleware = applyMiddleware(schema, logInput);
 
 app.use(
   '/graphql',
@@ -98,6 +98,3 @@ mongoose.connect('mongodb+srv://jenny:Codesmith41@cluster0.nbdhe.mongodb.net/sam
 app.listen(4000, () => {
   console.log('Listening on port 4000'); 
 });
-
-
-
