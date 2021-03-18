@@ -3,14 +3,15 @@ const connectDb = require('./config/db');
 const typeDefs = require('./types');
 const resolvers = require('./resolvers');
 const models = require('./models');
-require('dotenv').config()
+const tracers = require('./tracers');
 
 connectDb();
 
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: { models, tracers },
+  context: { models },
+  formatResponse: tracers,
 });
 
 server.listen(4001).then(({ url }) => {

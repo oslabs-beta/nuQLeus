@@ -1,5 +1,3 @@
 const tracers = require('./tracers');
 
-module.exports = {
-  tracers,
-};
+module.exports = tracers;
