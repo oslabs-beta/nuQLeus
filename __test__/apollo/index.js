@@ -3,6 +3,7 @@ const connectDb = require('./config/db');
 const typeDefs = require('./types');
 const resolvers = require('./resolvers');
 const models = require('./models');
+require('dotenv').config()
 
 connectDb();
 
