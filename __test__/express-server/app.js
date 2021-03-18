@@ -20,13 +20,13 @@ const extensions = ({ document, variables, operationName, result, context }) => 
 });
 
 // Users can still access the variables: request, response, graphQLParams
-const options = {
+const options = (request, response, graphQLParams) => ({
   schema,
-  context: { startTime: 400, queryTimes: [], },
+  context: { startTime: 400, queryTimes: [], query: graphQLParams.query },
   graphiql: true,
-}
+});
 
-const newOptions = nuqleus.WrapOptions(options, ests);
+const newOptions = nuqleus.WrapOptions(options, extensions);
 
 app.use('/graphql', graphqlHTTP(newOptions));
 

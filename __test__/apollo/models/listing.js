@@ -1,13 +1,6 @@
-<<<<<<< HEAD
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-=======
-const mongoose = require('mongoose');
-const { Schema } = mongoose;
-
-//AnimalSchema
->>>>>>> 5d31f101af7fca4d1bb7e671b23a520171683922
 const ListingAndReviewsSchema = new Schema({
   _id: {
     type: String,
@@ -168,10 +161,6 @@ const ListingAndReviewsSchema = new Schema({
   },
 });
 
-<<<<<<< HEAD
-const Listing = mongoose.model("listing", ListingAndReviewsSchema);
-=======
 const Listing = mongoose.model('listing', ListingAndReviewsSchema);
->>>>>>> 5d31f101af7fca4d1bb7e671b23a520171683922
 
 module.exports = { Listing };
