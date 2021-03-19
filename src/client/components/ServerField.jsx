@@ -41,6 +41,25 @@ const ServerField = () => {
     return averageResolverResponse;
   }
 
+  function updateGraphData(queryTime, resolverTime) {
+    const data = [];
+
+    data.push({x: 'Total Query Time', y: queryTime.duration, label: queryTime.duration + 'ms'});
+
+    resolverTime.forEach((ele) => {
+      const coordinate = {};
+      coordinate.x = ele.parentType + ' : ' + ele.fieldName;
+      coordinate.y = ele.average;
+      coordinate.label = ele.average + 'ms';
+
+      data.push(coordinate);
+    })
+
+    // Reverse bar chart to show highest values on top 
+    data.reverse();
+    return data;
+  }
+
   // Invokes query to the Apollo client
   function handleClick(e) {
     e.preventDefault();
@@ -73,18 +92,25 @@ const ServerField = () => {
         .then((res) => {
           const extensionsExist = res.extensions ? true : false;
 
-          if (extensionsExist) {
+          if (extensionsExist && res.extensions.nuQLeusTracing) {
+
+            const queryTimeData = queryTime(res.extensions);
+            const resolverTimeData = resolverTime(res.extensions.nuQLeusTracing.resolvers);
+            const graphData = updateGraphData(queryTimeData, resolverTimeData);
+      
             setInfo(() => ({
               ...info,
               response: res.data,
               extensions: res.extensions,
-              queryTime: queryTime(res.extensions),
-              resolverTime: resolverTime(res.extensions.nuQLeusTracing.resolvers),
+              queryTime: queryTimeData,
+              resolverTime: resolverTimeData,
+              graphData
             }));
           } else {
             setInfo(() => ({
               ...info,
               response: res.data ? res.data: res,
+              extensions: null
             }));
           }
         })
@@ -111,7 +137,7 @@ const ServerField = () => {
     <div className="server-field">
       <form>
         <label>
-          <h3 className="query-title">Server:</h3>
+          <h4 className="query-title">Server:</h4>
           <input id="server-input" className="input" type="text" defaultValue={info.uri} />
         </label>
         <button id="submit-query" className="btn-gray" type="submit" onClick={handleClick}>

@@ -39,7 +39,7 @@ const VariableField = () => {
 
   return (
     <>
-      <h3> Variables:</h3>
+      <h4> Variables</h4>
       <CodeMirror
         // name="js"
         value={info.variables}

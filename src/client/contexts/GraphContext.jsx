@@ -20,7 +20,8 @@ export const GraphContextProvider = (props) => {
     response: '',
     extensions: '',
     queryTime: '',
-    resolverTime: ''
+    resolverTime: '',
+    graphData: []
   });
 
   return <GraphContext.Provider value={[info, setInfo]}>{props.children}</GraphContext.Provider>;

@@ -43,7 +43,7 @@ const QueryEditor = () => {
 
   return (
     <>
-      <h3>Body:</h3>
+      <h4>Body</h4>
       <CodeMirror
         // name="js"
         value={info.body}

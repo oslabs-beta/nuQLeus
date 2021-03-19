@@ -1,7 +1,28 @@
 body {
   font-family: -apple-system,BlinkMacSystemFont,segoe ui,roboto,oxygen,ubuntu,cantarell,fira sans,droid sans,helvetica neue,sans-serif;
   background-color: rgb(1, 2, 11);
-  color: #eee;
+  color: rgb(195, 194, 197);
+}
+
+/***** TITLES *****/
+h3 {
+  margin-block-start: 0em;
+}
+
+.no-tracing {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.notracing .no-tracing-msg {
+  align-self: center;
+}
+
+.no-tracing-msg {
+  color: #3e3a41;
 }
 
 /***** CONTAINERS *****/
@@ -96,15 +117,7 @@ body {
 /***** OUTPUTS *****/
 
 .output-display {
-  height: 100%;
-  width: 95%;
-  /* overflow: auto;
-  overflow-wrap: break-word;
-  border: 1px solid purple; */
-}
-
-.extension-display {
-  height: 100%;
+  height: 95%;
   width: 95%;
   /* overflow: auto;
   overflow-wrap: break-word;
