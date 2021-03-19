@@ -7,12 +7,12 @@ const ServerField = () => {
   const [info, setInfo] = useContext(GraphContext);
 
   // Invokes query to the GraphQL server/API
-  // function queryTime(extensions) {
-  //   // Grab variables from nuQLeusTracing field:
-  //   const { startTime, endTime, duration } = extensions.nuQLeusTracing;
-  //   const queryResponseTime = duration;
-  //   return { startTime, endTime, duration };
-  // }
+  function queryTime(extensions) {
+    // Grab variables from nuQLeusTracing field:
+    const { startTime, endTime, duration } = extensions.nuQLeusTracing;
+    const queryResponseTime = duration;
+    return { startTime, endTime, duration };
+  }
 
   // Resolvers is an array of resolver objects
   function resolverTime(resolvers) {

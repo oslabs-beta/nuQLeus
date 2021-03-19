@@ -14,7 +14,6 @@ query AnyQueryName($_id: ID!) {
     _id
   }
 }
-
 // variables
 {
   "_id": "1003530"

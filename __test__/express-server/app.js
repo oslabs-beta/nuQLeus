@@ -12,7 +12,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-
 // Users can still access the variables: { document, variables, operationName, result, context } 
 const extensions = ({ document, variables, operationName, result, context }) => ({
   runTime: context.startTime,
