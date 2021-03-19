@@ -5,7 +5,6 @@ const connectDb = require('./config/db');
 const typeDefs = require('./types');
 const resolvers = require('./resolvers');
 const models = require('./models');
-const tracers = require('./tracers');
 
 connectDb();
 
@@ -51,7 +50,7 @@ const server = new ApolloServer({
     nuqleusQueryTimes: [],
   }),
   formatResponse: (response, responseContext) => {
-    const { context } = responseContext
+    const { context } = responseContext;
     response.extensions = { 
       nuQLeusTracing: {
         startTime: new Date(context.nuqleusStartTime).toISOString(),
