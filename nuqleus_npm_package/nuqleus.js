@@ -36,17 +36,19 @@ nuqleus.WrapOptions = (options, clientExtensions) => {
   const extensions = ({ document, variables, operationName, result, context }) => {
     // Create another callback that modifies that OGExt and return a single object 
     const nuqleusExt = ({ document, variables, operationName, result, context, }) => ({
-    nuQLeusTracing: {
+      nuQLeusTracing: {
         startTime: new Date(context.nuqleusStartTime).toISOString(),
         endTime: new Date(Date.now()).toISOString(),
         duration: Date.now() - context.nuqleusStartTime,
         resolvers: context.nuqleusQueryTimes,
       },
-  });
-    const newExt = nuqleusExt({ document, variables, operationName, result, context });
+    });
+
+  const newExt = nuqleusExt({ document, variables, operationName, result, context });
+
     // If clientExtensions does not exist, return nuqleus-tracing extensions
     if (!clientExtensions) return newExt;
-    
+
     // If clientExtensions do exist, then process existing clientExtensions and combine into a single object with nuqleus-tracing extensions
     const originalExt = clientExtensions({ document, variables, operationName, result, context });  
     return {
@@ -64,19 +66,19 @@ nuqleus.WrapOptions = (options, clientExtensions) => {
       : { nuqleusStartTime: Date.now(), nuqleusQueryTimes: [] },
       extensions,
     });
-  } else if (typeof options === 'function') {
-    
+  }
+  else if (typeof options === 'function') {
     return (request, response, graphQLParams) => {
       const originalOptions = options(request, response, graphQLParams);
       return {
-      ...originalOptions,
-      schema: applyMiddleware(originalOptions.schema, traceResolvers),
-      context: originalOptions.context
-      ? { ...originalOptions.context, nuqleusStartTime: Date.now(), nuqleusQueryTimes: [] }
-      : { nuqleusStartTime: Date.now(), nuqleusQueryTimes: [] },
-      extensions,
-    }
-  };
+        ...originalOptions,
+        schema: applyMiddleware(originalOptions.schema, traceResolvers),
+        context: originalOptions.context
+        ? { ...originalOptions.context, nuqleusStartTime: Date.now(), nuqleusQueryTimes: [] }
+        : { nuqleusStartTime: Date.now(), nuqleusQueryTimes: [] },
+        extensions,
+      }
+    };
   }
 }
 

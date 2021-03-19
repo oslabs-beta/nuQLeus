@@ -10,10 +10,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@graphql-tools/schema": "^7.1.3",
     "apollo-server": "^2.21.0",
     "apollo-server-express": "^2.21.0",
     "dotenv": "^8.2.0",
     "graphql": "^15.5.0",
+    "graphql-middleware": "^6.0.4",
     "mongoose": "^5.11.18",
     "nodemon": "^2.0.7"
   }
