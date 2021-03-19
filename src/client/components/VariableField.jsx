@@ -20,7 +20,7 @@ const VariableField = () => {
     theme: 'custom-0',
     autoCloseBrackets: true,
     cursorScrollMargin: 48,
-    mode: 'graphql',
+    mode: 'javascript',
     lineNumbers: true,
     indentUnit: 2,
     tabSize: 2,
