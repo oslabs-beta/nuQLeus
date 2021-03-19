@@ -113,6 +113,12 @@ const ServerField = () => {
             }));
           }
         })
+        .catch((err) => {
+          setInfo(() => ({
+            ...info,
+            response: 'Request to server failed.',
+          }));
+        })
     };
 
     // Function to handle invalid user input
