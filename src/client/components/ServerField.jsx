@@ -10,7 +10,6 @@ const ServerField = () => {
   function queryTime(extensions) {
     // Grab variables from nuQLeusTracing field:
     const { startTime, endTime, duration } = extensions.nuQLeusTracing;
-    const queryResponseTime = duration;
     return { startTime, endTime, duration };
   }
 
@@ -41,12 +40,31 @@ const ServerField = () => {
     return averageResolverResponse;
   }
 
+  function updateGraphData(queryTime, resolverTime) {
+    const data = [];
+
+    data.push({x: 'Total Query Time', y: queryTime.duration, label: queryTime.duration + 'ms'});
+
+    resolverTime.forEach((ele) => {
+      const coordinate = {};
+      coordinate.x = ele.parentType + ' : ' + ele.fieldName;
+      coordinate.y = ele.average;
+      coordinate.label = ele.average + 'ms';
+
+      data.push(coordinate);
+    })
+
+    // Reverse bar chart to show highest values on top 
+    data.reverse();
+    return data;
+  }
+
   // Invokes query to the Apollo client
   function handleClick(e) {
     e.preventDefault();
 
     // Gather user input from 'Server', 'Query', and 'Variables' input fields; determine request 'type'
-    const userURI = document.getElementById('server-input').value;
+    const userURI = document.getElementById('input-link').value;
     let userVariables;
     if (info.variables === '') userVariables = {};
     else userVariables = JSON.parse(info.variables);
@@ -63,28 +81,44 @@ const ServerField = () => {
           variables: userVariables,
         }),
       })
-        .then((res) => {
-          if (!res.ok) {
-            throw Error(res.statusText);
-          }
-          return res;
-        })
+        // .then((res) => {
+        //   if (!res.ok) {
+        //     throw Error(res.statusText);
+        //   }
+        //   return res;
+        // })
         .then((res) => res.json())
         .then((res) => {
+          const extensionsExist = res.extensions ? true : false;
+
+          if (extensionsExist && res.extensions.nuQLeusTracing) {
+
+            const queryTimeData = queryTime(res.extensions);
+            const resolverTimeData = resolverTime(res.extensions.nuQLeusTracing.resolvers);
+            const graphData = updateGraphData(queryTimeData, resolverTimeData);
+      
+            setInfo(() => ({
+              ...info,
+              response: res.data,
+              extensions: res.extensions,
+              queryTime: queryTimeData,
+              resolverTime: resolverTimeData,
+              graphData
+            }));
+          } else {
+            setInfo(() => ({
+              ...info,
+              response: res.data ? res.data: res,
+              extensions: null
+            }));
+          }
+        })
+        .catch((err) => {
           setInfo(() => ({
             ...info,
-            response: res,
-            extensions: res.extensions,
-            queryTime: queryTime(res.extensions),
-            resolverTime: resolverTime(res.extensions.nuQLeusTracing.resolvers),
+            response: 'Request to server failed.',
           }));
         })
-        .catch((error) => {
-          setInfo(() => ({
-            ...info,
-            response: 'Request to API Unsuccessful.',
-          }));
-        });
     };
 
     // Function to handle invalid user input
@@ -106,15 +140,11 @@ const ServerField = () => {
   }
   return (
     <div className="server-field">
-      <form>
-        <label>
-          <h3 className="query-title">Server:</h3>
-          <input id="server-input" className="input" type="text" defaultValue={info.uri} />
-        </label>
-        <button id="submit-query" className="btn-gray" type="submit" onClick={handleClick}>
+        <div className="server-title"><h4 className="query-title">Server:</h4></div>
+        <div className="server-input"><input id="input-link" className="input" type="text" defaultValue={info.uri} /></div>
+        <div className="server-btn"><button id="submit-query" className="btn-gray" type="submit" onClick={handleClick}>
           Send
-        </button>
-      </form>
+        </button></div>
     </div>
   );
 };

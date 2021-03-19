@@ -20,7 +20,7 @@ const VariableField = () => {
     theme: 'custom-0',
     autoCloseBrackets: true,
     cursorScrollMargin: 48,
-    mode: 'graphql',
+    mode: 'javascript',
     lineNumbers: true,
     indentUnit: 2,
     tabSize: 2,
@@ -39,7 +39,7 @@ const VariableField = () => {
 
   return (
     <>
-      <h3> Variables:</h3>
+      <h4> Variables</h4>
       <CodeMirror
         // name="js"
         value={info.variables}

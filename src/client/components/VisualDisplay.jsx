@@ -1,48 +1,48 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { VictoryBar, VictoryChart, VictoryTheme, VictoryLabel, VictoryGroup, VictoryAxis, VictoryTooltip } from 'victory';
 import { GraphContext } from '../contexts/GraphContext';
 
-const CustomLabel = (props) => {
-    const {x, y, orientation} = props;
-    //const newY = orientation === "bottom" ? y - 35 : y + 35;
-    const newX = x + 35;
-    return (
-      <g>
-        <circle cx={newX} cy={y} r="20" stroke="none" fill="none"/>
-      </g>
-    );
-}
-
 const VisualDisplay = () => {
   const [info, setInfo] = useContext(GraphContext);
-  
-  const data = [];
-  data.push({x: 'Total Query Time', y: info.queryTime.duration, label: info.queryTime.duration + 'ms'});
-
-  info.resolverTime.forEach((ele) => {
-    const coordinate = {};
-    coordinate.x = ele.parentType + ' : ' + ele.fieldName;
-    coordinate.y = ele.average;
-    coordinate.label = ele.average + 'ms';
-
-    data.push(coordinate);
-  })
-
-  // Reverse bar chart to show highest values on top 
-  data.reverse();
-  console.log('data:', data);
+  //console.log('data:', data);
+  const [data, setData] = useState(info.graphData);
 
   // Write out the axis labels into arrays
-  const labels = [];
-  const labelLen = [];
+  const labelsData = [];
+  const labelLenData = [];
+
   for (let i = 0; i < data.length; ++i) {
-    labels.push(data[i].x);
-    labelLen.push(i);
+    labelsData.push(data[i].x);
+    labelLenData.push(i);
   }
+
+  const [labels, setLabels] = useState(labelsData);
+  const [labelLen, setLabelLen] = useState(labelLenData);
+
+  useEffect(() => {
+    setData(info.graphData);
+  }, [info.response]);
+
+  useEffect(() => {
+    const labels = [];
+    const labelLen = [];
+
+    for (let i = 0; i < data.length; ++i) {
+      labels.push(data[i].x);
+      labelLen.push(i);
+    }
+
+    setLabels(labels);
+    setLabelLen(labelLen);
+  }, [data])
+
+  // Conditiionally adjust height according to number of rows: 
+
+  let height = 300;
+  if (labelLen.length > 7) height = 600;
 
   return (
     <>
-      <h3>Tracing:</h3>
       <VictoryChart
         // theme={VictoryTheme.material}
         domain={{ y: [0, info.queryTime.duration] }}
@@ -53,6 +53,7 @@ const VisualDisplay = () => {
         }}
         padding={{left: 175, right: 40}}
         width={600}
+        height={height}
       >
         <VictoryBar horizontal
           style={{
@@ -64,16 +65,12 @@ const VisualDisplay = () => {
               duration: 500,
               before: () => ({
                 _y: 0,
-                label: "BYE"
               })
             }
           }}
           labelComponent={
-            // <VictoryTooltip
-            //   flyoutComponent={<CustomLabel/>}
-            // />
             <VictoryLabel
-              dx={40} 
+              dx={30} 
               textAnchor="end"
               theme={VictoryTheme.material}
               style={[
