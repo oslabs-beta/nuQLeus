@@ -7,6 +7,7 @@ const VisualDisplay = () => {
   //console.log('data:', data);
   const [data, setData] = useState(info.graphData);
 
+  // Write out the axis labels into arrays
   const labelsData = [];
   const labelLenData = [];
 
@@ -35,7 +36,10 @@ const VisualDisplay = () => {
     setLabelLen(labelLen);
   }, [data])
 
-  // Write out the axis labels into arrays
+  // Conditiionally adjust height according to number of rows: 
+
+  let height = 300;
+  if (labelLen.length > 7) height = 600;
 
   return (
     <>
@@ -49,6 +53,7 @@ const VisualDisplay = () => {
         }}
         padding={{left: 175, right: 40}}
         width={600}
+        height={height}
       >
         <VictoryBar horizontal
           style={{
