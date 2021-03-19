@@ -25,13 +25,7 @@ const QueryEditor = () => {
     tabSize: 2,
     styleActiveLine: true,
     viewportMargin: 99,
-    placeholder: 
-    `query movies {
-  movies (first: 10) {
-    title
-    cast
-  }
-}`
+    placeholder: 'Enter query or mutation'
   };
   const onChange = (editor, data, value) => {
     // this.setState({ value });
@@ -43,7 +37,7 @@ const QueryEditor = () => {
 
   return (
     <>
-      <h3>Body:</h3>
+      <h4>Body</h4>
       <CodeMirror
         // name="js"
         value={info.body}

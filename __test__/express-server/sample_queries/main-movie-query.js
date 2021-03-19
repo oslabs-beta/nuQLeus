@@ -1,5 +1,5 @@
 query movies {
-  movies {
+  movies (first: 5) {
     _id
     title
     year
@@ -29,6 +29,8 @@ query movies {
     countries
     genres
     num_mflix_comments
-    comments
+    comments {
+      name
+    }
   }
 }
