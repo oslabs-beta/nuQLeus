@@ -10,7 +10,6 @@ const ServerField = () => {
   function queryTime(extensions) {
     // Grab variables from nuQLeusTracing field:
     const { startTime, endTime, duration } = extensions.nuQLeusTracing;
-    const queryResponseTime = duration;
     return { startTime, endTime, duration };
   }
 
@@ -65,7 +64,7 @@ const ServerField = () => {
     e.preventDefault();
 
     // Gather user input from 'Server', 'Query', and 'Variables' input fields; determine request 'type'
-    const userURI = document.getElementById('server-input').value;
+    const userURI = document.getElementById('input-link').value;
     let userVariables;
     if (info.variables === '') userVariables = {};
     else userVariables = JSON.parse(info.variables);
@@ -135,15 +134,11 @@ const ServerField = () => {
   }
   return (
     <div className="server-field">
-      <form>
-        <label>
-          <h4 className="query-title">Server:</h4>
-          <input id="server-input" className="input" type="text" defaultValue={info.uri} />
-        </label>
-        <button id="submit-query" className="btn-gray" type="submit" onClick={handleClick}>
+        <div className="server-title"><h4 className="query-title">Server:</h4></div>
+        <div className="server-input"><input id="input-link" className="input" type="text" defaultValue={info.uri} /></div>
+        <div className="server-btn"><button id="submit-query" className="btn-gray" type="submit" onClick={handleClick}>
           Send
-        </button>
-      </form>
+        </button></div>
     </div>
   );
 };

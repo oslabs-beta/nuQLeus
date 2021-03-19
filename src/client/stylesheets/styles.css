@@ -36,6 +36,7 @@ h3 {
 #middle-container,
 #right-container {
   width: 33%;
+  min-height: 95%;
 }
 
 
@@ -73,14 +74,14 @@ h3 {
   overflow-wrap: break-word;
 }
 
-#server-input {
+#input-link {
   height: 1.2em;
-  width: 60%;
+  width: 100%;
   background-color: rgb(19, 19, 37);
   border: none;
   color: white;
   padding: 10px;
-  margin: 0px 10px;
+  /* margin: 0px 10px; */
 }
 
 .btn-gray {
@@ -88,7 +89,7 @@ h3 {
   text-indent: 0px;
   text-shadow: none;
   border:none;
-  margin-left: 10px;
+  margin-left: 30px;
   background-color: #1c232f;
   padding: 12px 30px;
   text-align: center;
@@ -125,10 +126,35 @@ h3 {
 }
 
 .server-field {
-  display: inline-flexbox;
-  width: 100%;
+  display: inline-flex;
+  width: 95%;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.query-title {
-  display: inline;
+.server-title, .server-btn {
+  flex-grow: 1
+}
+
+.server-input {
+  flex-grow: 40
+}
+
+/***** RESPONSIVE CSS *****/
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  #main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+  
+  #left-container, 
+  #middle-container,
+  #right-container {
+    width: 100%;
+    min-height: 50%;
+    margin-bottom: 20px;
+  }
 }
