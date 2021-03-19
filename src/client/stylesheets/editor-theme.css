@@ -7,76 +7,98 @@
 	font-family: "IBM Plex Mono", monospace;
 	letter-spacing: 0.41px;
 }
+
 .cm-s-custom-0 .CodeMirror-cursor {
 	border-color: #fff;
 	outline: 1px solid #fff;
 }
+
 .cm-s-custom-0 .CodeMirror-activeline-background {
 	background: rgba(240, 240, 255, 0.8);
 }
+	
 .cm-s-custom-0 .CodeMirror-selected {
 	background: rgba(55, 55, 77, 0.3);
 }
+
 .cm-s-custom-0 .cm-comment {
 	font-style: italic;
 	color: #676b79;
 }
+
 .cm-s-custom-0 .cm-operator {
 	color: #f3f3f3;
 }
+
 .cm-s-custom-0 .cm-string {
 	color: #c267f9;
 }
+
 .cm-s-custom-0 .cm-string-2 {
 	color: #ffb86c;
 }
+
 .cm-s-custom-0 .cm-tag {
 	color: #ff2c6d;
 }
+
 .cm-s-custom-0 .cm-meta {
 	color: #b084eb;
 }
+
 .cm-s-custom-0 .cm-number {
 	color: #ffb86c;
 }
+
 .cm-s-custom-0 .cm-atom {
 	color: #ff2c6d; 
-} 
+}
+
 .cm-s-custom-0 .cm-keyword {
 	color: #b095e4; 
 }
+
 .cm-s-custom-0 .cm-variable {
 	color: #f73c91;
 }
+
 .cm-s-custom-0 .cm-variable-2 {
 	color: #ff9ac1;
 }
-.cm-s-custom-0 .cm-variable-3, .cm-s-custom-0 .cm-type {
+
+.cm-s-custom-0 .cm-variable-3 .cm-s-custom-0 .cm-type {
 	color: #ff9ac1;
 }
+
 .cm-s-custom-0 .cm-def {
 	color: #e6e6e6;
 }
+
 .cm-s-custom-0 .cm-property {
 	color: #f3f3f3;
 }
+
 .cm-s-custom-0 .cm-unit {
 	color: #ffb86c;
 }
+
 .cm-s-custom-0 .cm-attribute {
 	color: #d8baea;
 }
+
 .cm-s-custom-0 .CodeMirror-matchingbracket {
 	border-bottom: 1px dotted #19f9d8;
 	padding-bottom: 2px;
 	color: #e6e6e6;
 }
+
 .cm-s-custom-0 .CodeMirror-gutters {   
 	background: rgb(19, 19, 37);   
 	border-right-color: rgb(19, 19, 37);   
 	width: 40px;
 	margin-right: 5px; 
 }
+
 .cm-s-custom-0 .CodeMirror-linenumber {   
 	color: rgb(173, 170, 204);   
 	opacity: 0.75;   
@@ -85,6 +107,7 @@
 	font-size: 14px;   
 	border-top: 2px solid transparent; 
 }
+
 .cm-s-custom-0 .CodeMirror-lines .CodeMirror-code div {   
 	padding-left: 2px; 
 };
