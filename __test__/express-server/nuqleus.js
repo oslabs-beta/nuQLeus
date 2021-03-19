@@ -47,7 +47,7 @@ nuqleus.WrapOptions = (options, clientExtensions) => {
 
     // If clientExtensions does not exist, return nuqleus-tracing extensions
     if (!clientExtensions) return newExt;
-    
+
     // If clientExtensions do exist, then process existing clientExtensions and combine into a single object with nuqleus-tracing extensions
     const originalExt = clientExtensions({ document, variables, operationName, result, context });  
     return {
@@ -65,7 +65,8 @@ nuqleus.WrapOptions = (options, clientExtensions) => {
       : { nuqleusStartTime: Date.now(), nuqleusQueryTimes: [] },
       extensions,
     });
-  } else if (typeof options === 'function') {
+  }
+  else if (typeof options === 'function') {
     return (request, response, graphQLParams) => {
       const originalOptions = options(request, response, graphQLParams);
       return {

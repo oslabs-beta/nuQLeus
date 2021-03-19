@@ -45,7 +45,11 @@ const schemaWithMiddleWare = applyMiddleware(schema, traceResolvers);
 
 const server = new ApolloServer({
   schema: schemaWithMiddleWare,
-  context: { models, nuqleusStartTime: Date.now(), nuqleusQueryTimes: [] },
+  context: async ({ req }) => ({
+    models,
+    nuqleusStartTime: Date.now(),
+    nuqleusQueryTimes: [],
+  }),
   formatResponse: (response, responseContext) => {
     const { context } = responseContext
     response.extensions = { 
