@@ -2,11 +2,16 @@ import React, { createContext, useState } from 'react';
 
 export const GraphContext = createContext();
 
-const sampleBody = `query movies {
-  movies (first: 5) {
-    title
-    cast
+const sampleBody = `query AnyQueryName($_id: ID!) {
+  listing(_id: $_id) {
+    name
+    _id
   }
+}
+`;
+
+const sampleVariable = `{
+  "_id": "1003530"
 }
 `;
 
@@ -14,9 +19,9 @@ const sampleVar = '{"username": "zbrucker"}';
 
 export const GraphContextProvider = (props) => {
   const [info, setInfo] = useState({
-    uri: 'http://localhost:4000/graphql',
+    uri: 'http://localhost:4001',
     body: sampleBody,
-    variables: '',
+    variables: sampleVariable,
     response: '',
     extensions: '',
     queryTime: '',

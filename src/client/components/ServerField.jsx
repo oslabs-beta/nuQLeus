@@ -108,7 +108,7 @@ const ServerField = () => {
           } else {
             setInfo(() => ({
               ...info,
-              response: res.data ? res.data: res,
+              response: res.data ? res.data : res,
               extensions: null
             }));
           }
