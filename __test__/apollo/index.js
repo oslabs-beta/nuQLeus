@@ -6,60 +6,39 @@ const typeDefs = require('./types');
 const resolvers = require('./resolvers');
 const models = require('./models');
 
+const nuqleus = require('./nuqleusTest');
+
 connectDb();
 
-const traceResolvers = async (resolve, root, args, context, info) => {
-  const startTime = Date.now();
-  const result = await resolve(root, args, context, info);
-  const endTime = Date.now();
-
-  const pathArray = [];
-  let curPath = info.path;
-  do {
-    pathArray.push(curPath.key);
-    curPath = curPath.prev;
-  } while (curPath);
-
-  const resolverData = {
-    path: pathArray.reverse(),
-    startTime: new Date(startTime).toISOString(),
-    endTime: new Date(endTime).toISOString(),
-    fieldName: info.fieldName,
-    duration: endTime - startTime,
-    operation: info.operation.operation,
-    parentType: info.parentType,
-    returnType: info.returnType,
-  };
-
-  context.nuqleusQueryTimes.push(resolverData);
-  return result;
+// SAMPLE TEST INPUTS //
+const contextObject = {
+  models,
+  joshTest: {},
 };
-
-const schema = makeExecutableSchema({
-  typeDefs,
-  resolvers,
+// SAMPLE TEST INPUTS //
+const contextFunction = ({ req, res }) => ({
+  models,
+  joshText: {},
 });
-
-const schemaWithMiddleWare = applyMiddleware(schema, traceResolvers);
-
-const server = new ApolloServer({
-  schema: schemaWithMiddleWare,
-  context: async ({ req }) => ({
-    models,
-    nuqleusStartTime: Date.now(),
-    nuqleusQueryTimes: [],
-  }),
-  formatResponse: (response, responseContext) => {
-    const { context } = responseContext;
-    response.extensions = { 
-      nuQLeusTracing: {
-        startTime: new Date(context.nuqleusStartTime).toISOString(),
+// SAMPLE TEST INPUTS //
+const fResponse = {
+  formatResponse: (res, reqContext) => {
+    res.http = {
+      joshTracing: {
+        startTime: new Date(reqContext.context.nuqleusStartTime).toISOString(),
         endTime: new Date(Date.now()).toISOString(),
-        duration: Date.now() - context.nuqleusStartTime,
-        resolvers: context.nuqleusQueryTimes,
       }
     };
-  },
+  }
+};
+
+// WHAT THE USER NEEDS TO CREATE
+const nuqleusServerObject = nuqleus.ApolloWrapOptions(
+  typeDefs, resolvers, contextFunction, fResponse
+);
+
+const server = new ApolloServer({
+  ...nuqleusServerObject,
 });
 
 server.listen(4001).then(({ url }) => {
