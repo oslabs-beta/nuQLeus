@@ -30,7 +30,7 @@ const fResponse = {
       }
     };
   }
-}
+};
 
 // WHAT THE USER NEEDS TO CREATE
 const nuqleusServerObject = nuqleus.ApolloWrapOptions(
@@ -39,17 +39,8 @@ const nuqleusServerObject = nuqleus.ApolloWrapOptions(
 
 const server = new ApolloServer({
   ...nuqleusServerObject,
-})
+});
 
 server.listen(4001).then(({ url }) => {
   console.log(`🚀 Server ready at ${url}`);
 });
-
-
-/**
- * if you don't have formatResponse, add this
- * 
- * if you do have formatResponse, but don't have extensions, do this-2
- * 
- * if you do have formatResponse and have extensions, do this-3
- */

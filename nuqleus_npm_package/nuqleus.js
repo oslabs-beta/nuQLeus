@@ -149,29 +149,42 @@ nuqleus.WrapOptions = (options, clientExtensions) => {
         })
       )
     }
-  }
+  };
 
   /**
    * @returns must be a function that returns the response with an extensions object
    * 
    * fuse client formatResponse function with nuQLeus formatResponse
    */
-  const fuseFormatResponse = (response, requestContext) => {
+  const nuqleusFormatResponse = (response, requestContext) => {
+    if (response.extensions) {
+      response.extensions.nuQLeusTracing = {
+        startTime: new Date(requestContext.context.nuqleusStartTime).toISOString(),
+        endTime: new Date(Date.now()).toISOString(),
+        duration: Date.now() - requestContext.context.nuqleusStartTime,
+        resolvers: requestContext.context.nuqleusQueryTimes,
+      };
+    }
+    else {
+      response.extensions = {
+        nuQLeusTracing: {
+          startTime: new Date(requestContext.context.nuqleusStartTime).toISOString(),
+          endTime: new Date(Date.now()).toISOString(),
+          duration: Date.now() - requestContext.context.nuqleusStartTime,
+          resolvers: requestContext.context.nuqleusQueryTimes,
+        }
+      };
+    }
+  };
+
+  const fuseFormatResponse = () => {
     return (
       (response, requestContext) => {
-        const { context } = requestContext;
-        response.extensions = {
-          nuQLeusTracing: {
-            startTime: new Date(context.nuqleusStartTime).toISOString(),
-            endTime: new Date(Date.now()).toISOString(),
-            duration: Date.now() - context.nuqleusStartTime,
-            resolvers: context.nuqleusQueryTimes,
-          }
-        };
-        clientFormatResponse(response, requestContext);
+        clientFormatResponse.formatResponse(response, requestContext);
+        nuqleusFormatResponse(response, requestContext);
       }
     )
-  }
+  };
 
   /**
    * @returns object with schema, context, and formatResponse
@@ -181,9 +194,9 @@ nuqleus.WrapOptions = (options, clientExtensions) => {
   return {
     schema: schemaWithMiddleWare,
     context: fuseContexts(),
-    formatResponse: fuseFormatResponse(response, requestContext),
-  }
-}
+    formatResponse: fuseFormatResponse(),
+  };
+};
 
 
 
