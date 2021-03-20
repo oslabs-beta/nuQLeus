@@ -64,32 +64,35 @@ connectDb();
 //   },
 // });
 
-const contextObject = {
-  models,
-  joshTest: {},
-};
 
-const contextFunction = ({ req, res }) => ({
-  models,
-  joshText: {},
-});
 
-const extensionsObject = {
-  joshTracing: {
-    wakeTime: new Date(),
-    sleepTime: new Date(),
-  }
-}
+// const contextObject = {
+//   models,
+//   joshTest: {},
+// };
 
-const extensionsFunction = {
+// const contextFunction = ({ req, res }) => ({
+//   models,
+//   joshText: {},
+// });
+
+// const extensionsObject = {
+//   joshTracing: {
+//     wakeTime: new Date(),
+//     sleepTime: new Date(),
+//   }
+// }
+
+// const extensionsFunction = {
   
-}
+// }
 
-const nuqleusServerObject = nuqleus.ApolloWrapOptions({});
+// const nuqleusServerObject = nuqleus.ApolloWrapOptions({});
 
 
 const server = new ApolloServer({
-
+  typeDefs,
+  resolvers,
 })
 
 server.listen(4001).then(({ url }) => {

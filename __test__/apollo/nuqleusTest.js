@@ -1,6 +1,7 @@
 const { makeExecutableSchema } = require('@graphql-tools/schema')
 const { applyMiddleware } = require('graphql-middleware');
 
+const nuqleus = {};
 
 /**
  * @param {*} schema 
@@ -104,3 +105,5 @@ nuqleus.ApolloWrapOptions = (typeDefs, resolvers, clientContext, clientFormatRes
     formatResponse: fuseFormatResponse(response, requestContext),
   }
 }
+
+module.exports = nuqleus;
