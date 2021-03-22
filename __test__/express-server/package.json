@@ -17,6 +17,7 @@
     "graphql-middleware": "^6.0.4",
     "mongoose": "^5.11.18",
     "node-fetch": "^2.6.1",
+    "open": "^8.0.4",
     "pino": "^6.11.1"
   }
 }
