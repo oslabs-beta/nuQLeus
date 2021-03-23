@@ -1,11 +1,18 @@
-const { makeExecutableSchema } = require('@graphql-tools/schema')
+const { makeExecutableSchema } = require('@graphql-tools/schema');
 const { applyMiddleware } = require('graphql-middleware');
+const { exec } = require('child_process');
 
 const nuqleus = {};
 
+const connectToNuqleus = () => {
+  exec('node server.js', { encoding: 'utf-8' });
+};
+
 // Options parameter can be an object or a callback function
-// Extensions is a callback function 
-nuqleus.WrapOptions = (options, clientExtensions) => {
+// Extensions is a callback function
+nuqleus.WrapOptions = (options, clientExtensions, gui = true) => {
+  connectToNuqleus();
+
   const traceResolvers = async (resolve, root, args, context, info) => {
     const startTime = Date.now();
     const result = await resolve(root, args, context, info);
@@ -34,8 +41,8 @@ nuqleus.WrapOptions = (options, clientExtensions) => {
   };
 
   const extensions = ({ document, variables, operationName, result, context }) => {
-    // Create another callback that modifies that OGExt and return a single object 
-    const nuqleusExt = ({ document, variables, operationName, result, context, }) => ({
+    // Create another callback that modifies that OGExt and return a single object
+    const nuqleusExt = ({ document, variables, operationName, result, context }) => ({
       nuQLeusTracing: {
         startTime: new Date(context.nuqleusStartTime).toISOString(),
         endTime: new Date(Date.now()).toISOString(),
@@ -44,17 +51,17 @@ nuqleus.WrapOptions = (options, clientExtensions) => {
       },
     });
 
-  const newExt = nuqleusExt({ document, variables, operationName, result, context });
+    const newExt = nuqleusExt({ document, variables, operationName, result, context });
 
     // If clientExtensions does not exist, return nuqleus-tracing extensions
     if (!clientExtensions) return newExt;
 
     // If clientExtensions do exist, then process existing clientExtensions and combine into a single object with nuqleus-tracing extensions
-    const originalExt = clientExtensions({ document, variables, operationName, result, context });  
+    const originalExt = clientExtensions({ document, variables, operationName, result, context });
     return {
       ...originalExt,
       ...newExt,
-    }
+    };
   };
 
   if (typeof options === 'object') {
@@ -62,32 +69,39 @@ nuqleus.WrapOptions = (options, clientExtensions) => {
       ...options,
       schema: applyMiddleware(options.schema, traceResolvers),
       context: options.context
-      ? { ...options.context, nuqleusStartTime: Date.now(), nuqleusQueryTimes: [] }
-      : { nuqleusStartTime: Date.now(), nuqleusQueryTimes: [] },
+        ? { ...options.context, nuqleusStartTime: Date.now(), nuqleusQueryTimes: [] }
+        : { nuqleusStartTime: Date.now(), nuqleusQueryTimes: [] },
       extensions,
     });
   }
-  else if (typeof options === 'function') {
+  if (typeof options === 'function') {
     return (request, response, graphQLParams) => {
       const originalOptions = options(request, response, graphQLParams);
       return {
         ...originalOptions,
         schema: applyMiddleware(originalOptions.schema, traceResolvers),
         context: originalOptions.context
-        ? { ...originalOptions.context, nuqleusStartTime: Date.now(), nuqleusQueryTimes: [] }
-        : { nuqleusStartTime: Date.now(), nuqleusQueryTimes: [] },
+          ? { ...originalOptions.context, nuqleusStartTime: Date.now(), nuqleusQueryTimes: [] }
+          : { nuqleusStartTime: Date.now(), nuqleusQueryTimes: [] },
         extensions,
-      }
+      };
     };
   }
-}
+};
 
 /**
- * @param {*} schema 
- * @param {*} clientExtensions 
- * @returns 
+ * @param {*} schema
+ * @param {*} clientExtensions
+ * @returns
  */
- nuqleus.ApolloWrapOptions = (typeDefs, resolvers, clientContext, clientFormatResponse, ...clientInputs) => {
+nuqleus.ApolloWrapOptions = (
+  typeDefs,
+  resolvers,
+  clientContext,
+  clientFormatResponse,
+  ...clientInputs
+) => {
+  connectToNuqleus();
   // create executableSchema
   const schema = makeExecutableSchema({
     typeDefs,
@@ -99,14 +113,14 @@ nuqleus.WrapOptions = (options, clientExtensions) => {
     const startTime = Date.now();
     const result = await resolve(root, args, context, info);
     const endTime = Date.now();
-  
+
     const pathArray = [];
     let curPath = info.path;
     do {
       pathArray.push(curPath.key);
       curPath = curPath.prev;
     } while (curPath);
-  
+
     const resolverData = {
       path: pathArray.reverse(),
       startTime: new Date(startTime).toISOString(),
@@ -117,7 +131,7 @@ nuqleus.WrapOptions = (options, clientExtensions) => {
       parentType: info.parentType,
       returnType: info.returnType,
     };
-  
+
     context.nuqleusQueryTimes.push(resolverData);
     return result;
   };
@@ -127,33 +141,29 @@ nuqleus.WrapOptions = (options, clientExtensions) => {
 
   /**
    * @returns must be a function that returns an object
-   * 
+   *
    * fuse client context object with nuQLeus context
    */
   const fuseContexts = () => {
     if (typeof clientContext === 'object') {
-      return (
-        async ({ req, res }) => ({
-          ...clientContext,
-          nuqleusStartTime: Date.now(),
-          nuqleusQueryTimes: [],
-        })
-      )
+      return async ({ req, res }) => ({
+        ...clientContext,
+        nuqleusStartTime: Date.now(),
+        nuqleusQueryTimes: [],
+      });
     }
-    else if (typeof clientContext === 'function') {
-      return (
-        async ({ req, res }) => ({
-          ...clientContext({ req, res }),
-          nuqleusStartTime: Date.now(),
-          nuqleusQueryTimes: [],
-        })
-      )
+    if (typeof clientContext === 'function') {
+      return async ({ req, res }) => ({
+        ...clientContext({ req, res }),
+        nuqleusStartTime: Date.now(),
+        nuqleusQueryTimes: [],
+      });
     }
   };
 
   /**
    * @returns must be a function that returns the response with an extensions object
-   * 
+   *
    * fuse client formatResponse function with nuQLeus formatResponse
    */
   const nuqleusFormatResponse = (response, requestContext) => {
@@ -164,31 +174,26 @@ nuqleus.WrapOptions = (options, clientExtensions) => {
         duration: Date.now() - requestContext.context.nuqleusStartTime,
         resolvers: requestContext.context.nuqleusQueryTimes,
       };
-    }
-    else {
+    } else {
       response.extensions = {
         nuQLeusTracing: {
           startTime: new Date(requestContext.context.nuqleusStartTime).toISOString(),
           endTime: new Date(Date.now()).toISOString(),
           duration: Date.now() - requestContext.context.nuqleusStartTime,
           resolvers: requestContext.context.nuqleusQueryTimes,
-        }
+        },
       };
     }
   };
 
-  const fuseFormatResponse = () => {
-    return (
-      (response, requestContext) => {
-        clientFormatResponse.formatResponse(response, requestContext);
-        nuqleusFormatResponse(response, requestContext);
-      }
-    )
+  const fuseFormatResponse = () => (response, requestContext) => {
+    clientFormatResponse.formatResponse(response, requestContext);
+    nuqleusFormatResponse(response, requestContext);
   };
 
   /**
    * @returns object with schema, context, and formatResponse
-   * 
+   *
    * drop this object output into the client's new ApolloServer() instance
    */
   return {
@@ -198,6 +203,8 @@ nuqleus.WrapOptions = (options, clientExtensions) => {
   };
 };
 
-
+nuqleus.open = () => {
+  exec('node server.js', { encoding: 'utf-8' });
+};
 
 module.exports = nuqleus;

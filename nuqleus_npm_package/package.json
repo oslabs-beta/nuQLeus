@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "graphql-middleware": "^6.0.4"
+    "express": "^4.17.1",
+    "graphql-middleware": "^6.0.4",
+    "open": "^8.0.4"
   }
 }
