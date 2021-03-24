@@ -1,5 +1,6 @@
 const { ApolloError } = require('apollo-server');
 
+//Take the id the user writes down, and delete the item matching the id in the database
 module.exports = async (_, { id }, { models }) => {
   const deleteListing = await models.Listing.deleteOne({ _id: id });
 

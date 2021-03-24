@@ -15,6 +15,7 @@ require('codemirror/addon/edit/closebrackets');
 
 const QueryEditor = () => {
   const [info, setInfo] = useContext(GraphContext);
+
   const DEFAULT_JSX_OPTIONS = {
     theme: 'custom-0',
     autoCloseBrackets: true,
@@ -27,8 +28,8 @@ const QueryEditor = () => {
     viewportMargin: 99,
     placeholder: 'Enter query or mutation'
   };
+
   const onChange = (editor, data, value) => {
-    // this.setState({ value });
     setInfo(() => ({
       ...info,
       body: value,
@@ -39,7 +40,6 @@ const QueryEditor = () => {
     <>
       <h4>Body</h4>
       <CodeMirror
-        // name="js"
         value={info.body}
         options={DEFAULT_JSX_OPTIONS}
         onBeforeChange={onChange}

@@ -30,7 +30,6 @@ const VariableField = () => {
   };
 
   const onChange = (editor, data, value) => {
-    // this.setState({ value });
     setInfo(() => ({
       ...info,
       variables: value,
@@ -41,7 +40,6 @@ const VariableField = () => {
     <>
       <h4> Variables</h4>
       <CodeMirror
-        // name="js"
         value={info.variables}
         options={DEFAULT_JSX_OPTIONS}
         onBeforeChange={onChange}

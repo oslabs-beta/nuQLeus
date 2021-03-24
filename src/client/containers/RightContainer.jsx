@@ -4,7 +4,6 @@ import EmptyTracingData from '../components/EmptyTracingData';
 import { GraphContext } from '../contexts/GraphContext';
 
 const RightContainer = () => {
-
   const [info, setInfo] = useContext(GraphContext);
 
   const conditionRender = info.extensions ? <VisualDisplay /> : <EmptyTracingData/>;

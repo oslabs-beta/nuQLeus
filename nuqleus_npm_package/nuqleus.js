@@ -8,9 +8,13 @@ const connectToNuqleus = () => {
   exec('node server.js', { encoding: 'utf-8' });
 };
 
-// Options parameter can be an object or a callback function
-// Extensions is a callback function
-nuqleus.WrapOptions = (options, clientExtensions, gui = true) => {
+/**
+ * @param {*} options can be an object or a callback function
+ * @param {*} clientExtensions optional callback function
+ * @returns new options callback containing nuQleus tracing data 
+ */
+nuqleus.WrapOptions = (options, clientExtensions) => {
+  // connectToNuqleus() starts an express server and serves nuQLeus GUI to localhost:3030/nuqleus
   connectToNuqleus();
 
   const traceResolvers = async (resolve, root, args, context, info) => {
@@ -90,9 +94,12 @@ nuqleus.WrapOptions = (options, clientExtensions, gui = true) => {
 };
 
 /**
- * @param {*} schema
- * @param {*} clientExtensions
- * @returns
+ * @param {*} typeDefs required
+ * @param {*} resolvers required
+ * @param {*} clientContext optional; can be object or callback
+ * @param {*} clientFormatResponse option; must be object with a formatResponse key
+ * @param {*} clientInputs optional; can be spread with multiple callbacks
+ * @returns object to be spread into the client's new ApolloServer() instance
  */
 nuqleus.ApolloWrapOptions = (
   typeDefs,
@@ -101,6 +108,7 @@ nuqleus.ApolloWrapOptions = (
   clientFormatResponse,
   ...clientInputs
 ) => {
+  // connectToNuqleus() starts an express server and serves nuQLeus GUI to localhost:3030/nuqleus
   connectToNuqleus();
   // create executableSchema
   const schema = makeExecutableSchema({
