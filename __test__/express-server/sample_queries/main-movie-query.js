@@ -1,3 +1,5 @@
+// First five full movie query:
+
 query movies {
   movies (first: 5) {
     _id

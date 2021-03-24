@@ -4,21 +4,20 @@ import { GraphContext } from '../contexts/GraphContext';
 
 const VisualDisplay = () => {
   const [info, setInfo] = useContext(GraphContext);
-  //console.log('data:', data);
   const [data, setData] = useState(info.graphData);
-
   // Write out the axis labels into arrays
   const labelsData = [];
   const labelLenData = [];
-
+  // Use values from state (updated from ServerField to GraphContext) to update [x, y] coordinates
   for (let i = 0; i < data.length; ++i) {
     labelsData.push(data[i].x);
     labelLenData.push(i);
-  }
+  };
 
   const [labels, setLabels] = useState(labelsData);
   const [labelLen, setLabelLen] = useState(labelLenData);
 
+  // Whenever a query is made and state gets updated, 
   useEffect(() => {
     setData(info.graphData);
   }, [info.response]);
@@ -37,14 +36,12 @@ const VisualDisplay = () => {
   }, [data])
 
   // Conditiionally adjust height according to number of rows: 
-
   let height = 300;
   if (labelLen.length > 7) height = 600;
 
   return (
     <>
       <VictoryChart
-        // theme={VictoryTheme.material}
         domain={{ y: [0, info.queryTime.duration] }}
         domainPadding={{ x: [40, 40] }}
         animate={{
@@ -85,7 +82,6 @@ const VisualDisplay = () => {
           style={{
             axis: { stroke: 'white', },
             tickLabels: { fill: 'white', },
-            // grid: { stroke: 'white', strokeDasharray: '5' },
           }}
         />
         <VictoryAxis 
@@ -94,13 +90,12 @@ const VisualDisplay = () => {
           style={{
             axis: { stroke: 'white', },
             tickLabels: { fill: 'white', },
-            // grid: { stroke: 'white', strokeDasharray: '5' },
           }}
           fixLabelOverlap={true}
         />
       </VictoryChart>
     </>
-  )
-}
+  );
+};
 
 export default VisualDisplay;

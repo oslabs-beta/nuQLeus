@@ -9,7 +9,7 @@ const EmptyTracingData = () => {
     <div className="no-tracing">
       <div><h3 className="no-tracing-msg">{message}</h3></div>
     </div>
-  )
-}
+  );
+};
 
 export default EmptyTracingData;

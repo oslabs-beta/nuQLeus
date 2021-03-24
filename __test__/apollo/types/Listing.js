@@ -165,11 +165,16 @@ module.exports = gql`
     reviews: [String]
   }
 
+  #For a query,listing, take in an id, and return that listing
+  #For listings, return an array of all listings
   type Query {
     listing(_id: ID!): Listing
     listings: [Listing]
   }
 
+  #For createListing, take in a required input of what you want to create given the schema
+  #Given the id and an input according to the schema, return an updated value for that listing
+  #for an id, delete the payload written by the user
   type Mutation {
     createListing(input: CreateListingInput!): Listing!
     updateListing(id: ID!, input: UpdateListingInput!): Listing!
