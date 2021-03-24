@@ -1,15 +1,18 @@
 const { makeExecutableSchema } = require('@graphql-tools/schema');
 const { applyMiddleware } = require('graphql-middleware');
+const { exec } = require('child_process');
 
 const nuqleus = {};
 
-/**
- * @param {*} schema
- * @param {*} clientExtensions
- * @returns function containing all options
- */
+const connectToNuqleus = () => {
+  exec('node server.js', { encoding: 'utf-8' });
+};
 
-nuqleus.WrapOptions = (options, clientExtensions) => {
+// Options parameter can be an object or a callback function
+// Extensions is a callback function
+nuqleus.WrapOptions = (options, clientExtensions, gui = true) => {
+  connectToNuqleus();
+
   const traceResolvers = async (resolve, root, args, context, info) => {
     const startTime = Date.now();
     const result = await resolve(root, args, context, info);
@@ -98,6 +101,7 @@ nuqleus.ApolloWrapOptions = (
   clientFormatResponse,
   ...clientInputs
 ) => {
+  connectToNuqleus();
   // create executableSchema
   const schema = makeExecutableSchema({
     typeDefs,
