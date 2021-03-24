@@ -17,11 +17,10 @@ Boost GraphQL endpoint testing capabilities with resolver-level performance metr
 - [Features](#features)
 - [Getting Started with nuQLeus](#Getting-Started-with-nuQLeus)
   - [Install Dependencies and Run Scripts](#Install-Dependencies-and-run-scripts)
-  - 
   - [Import nuQLeus and Wrap Schema](#Import-nuQLeus-and-Wrap-Schema)
 - [Technologies](#technologies)
 - [Contributing](#contributing)
-- [Areas of Improvement](#areasforimprovement)
+- [Areas for Improvement](#areasforimprovement)
 - [Authors](#authors)
 - [License](#license)
 
@@ -79,15 +78,15 @@ connectDb();
 //    Add your models in here, if any                     //
 const userContext = {
   models,
-  joshTest: {},
+  sampleObject: {},
 };
 
 // 2. Define your formatResponse, if any, as an object //
 const userFormatResponse = {
   formatResponse: (res, reqContext) => {
     res.http = {
-      joshTracing: {
-        startTime: new Date(reqContext.context.nuqleusStartTime).toISOString(),
+      someUserHttp: {
+        startTime: new Date().toISOString(),
         endTime: new Date(Date.now()).toISOString(),
       }
     };
@@ -159,7 +158,8 @@ app.listen(4000, () => {
 <br>
 
 ### **Using the nuQLeus GUI**
-The nuQLeus wrapper methods instantiate a server and serve the nuQLeus GUI whenever a user's GraphQL server is initialized. In order to access the nuQLeus GUI, navigate to http://localhost:3030/nuqleus while your server is running. 
+The nuQLeus wrapper methods instantiate a server and serve the nuQLeus GUI whenever a user's GraphQL server is initialized. In order to access the nuQLeus GUI, navigate to http://localhost:3030/nuqleus while your server is running.
+
 <br>
 
 ## Technologies
@@ -184,7 +184,7 @@ Development of nuQLeus is open source on Hithub through the tech accelerator umb
 
 <br>
 
-## Potential for Improvement
+## Areas for Improvement
 #
 * Functionality
   * Include additional GraphQL servers into nuQLeus coverage
@@ -192,6 +192,7 @@ Development of nuQLeus is open source on Hithub through the tech accelerator umb
   * Add tracing capability for GraphQL subscriptions
   * Set up a database to store historical user inputs and results
     * Allow performance metric comparisons between past and present queries and mutations
+    * Alternatively, use localStorage for comparisons
   * Add onChange user input checks so only valid body/variables can be submitted
   * Add introspection capability for users to break down their schemas/queries/mutations in the frontend
 * UI/UX
@@ -210,14 +211,14 @@ Development of nuQLeus is open source on Hithub through the tech accelerator umb
 #
 * Daniel Perez [Daniel-P3](https://github.com/Daniel-P3)
 * Jenny Hai [jhai420](https://github.com/jhai420)
-* Josh Kim [jkim000](https://github.com/jkim000)
+* Joshua Kim [jkim000](https://github.com/jkim000)
 * Zach Brucker [zbrucker](https://github.com/zbrucker)
 
 <br>
 
 ## License
 #
-This project is licensed under the [MIT License](https://opensource.org/licenses/mit-license.php).
+[MIT](https://opensource.org/licenses/mit-license.php)
 
 <br>
 
