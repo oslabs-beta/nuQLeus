@@ -203,8 +203,4 @@ nuqleus.ApolloWrapOptions = (
   };
 };
 
-nuqleus.open = () => {
-  exec('node server.js', { encoding: 'utf-8' });
-};
-
 module.exports = nuqleus;

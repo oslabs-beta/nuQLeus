@@ -15,13 +15,13 @@ app.use(express.json());
 // Users can still access the variables: { document, variables, operationName, result, context } 
 const extensions = ({ document, variables, operationName, result, context }) => ({
   runTime: context.startTime,
-  query: context.query
+  query: context.query,
 });
 
 // Users can still access the variables: request, response, graphQLParams
 const options = (request, response, graphQLParams) => ({
   schema,
-  context: { startTime: 400, queryTimes: [], query: graphQLParams.query },
+  context: { startTime: 300, query: graphQLParams.query },
   graphiql: true,
 });
 

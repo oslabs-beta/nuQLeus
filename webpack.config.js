@@ -1,14 +1,21 @@
 const path = require('path');
+const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
   entry: './src/client/index.jsx',
-  mode: 'development',
-  // target: 'electron-renderer',
-  devtool: 'source-map',
+  mode: 'production',
+  // devtool: 'source-map',
+  plugins: [
+    new CompressionPlugin({
+      algorithm: 'gzip',
+      test: /\.jsx?$|\.css$|\.html$|\.eot?.+$|\.ttf?.+$|\.woff?.+$|\.svg?.+$/,
+    }),
+  ],
   module: {
     rules: [
       {
         test: /\.tsx?$/,
+        exclude: /node_modules/,
         include: [path.resolve(__dirname, 'src')],
         use: 'ts-loader',
       },
@@ -18,13 +25,12 @@ module.exports = {
         loader: 'babel-loader',
         options: {
           presets: ['@babel/preset-env', '@babel/preset-react'],
-          // plugins: ["@babel/plugin-transform-runtime", "@babel/plugin-proposal-class-properties"]
-        }
+        },
       },
       {
-        test: /\.(css|scss)$/,
-        //exclude: /node_modules/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        test: /\.(css)$/,
+        // exclude: /node_modules/,
+        use: ['style-loader', 'css-loader'],
       },
     ],
   },
@@ -40,5 +46,4 @@ module.exports = {
     publicPath: '/dist/',
     hot: true,
   },
-  
 };
