@@ -224,9 +224,9 @@ Development of nuQLeus is open source on Hithub through the tech accelerator umb
 
 ## Links/Contacts
 
-Email: nuqleusjs@gmail.com
-[Landing Page](http://www.nuqleus.io/)
-[LinkedIn](https://www.linkedin.com/company/nuqleus)
+* Email: nuqleusjs@gmail.com
+* [Landing Page](http://www.nuqleus.io/)
+* [LinkedIn](https://www.linkedin.com/company/nuqleus)
 
 <br>
 
