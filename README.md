@@ -196,7 +196,7 @@ Development of nuQLeus is open source on Hithub through the tech accelerator umb
   * Add onChange user input checks so only valid body/variables can be submitted
   * Add introspection capability for users to break down their schemas/queries/mutations in the frontend
 * UI/UX
-  * Use React Router (or other method) to show visualization of a summary view in a second window of the right-container
+  * Use React Router (or other method) to show multiple windows in the 
   * Include additional visualizations of relevant information users may find helpful
   * Convert the Victory graph library to a more widely-used alternative such as D3
 * Code Base
