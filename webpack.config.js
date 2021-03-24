@@ -1,5 +1,5 @@
 const path = require('path');
-const CompressionPlugin = require("compression-webpack-plugin");
+const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
   entry: './src/client/index.jsx',
@@ -7,9 +7,9 @@ module.exports = {
   // devtool: 'source-map',
   plugins: [
     new CompressionPlugin({
-    algorithm: "gzip",
-    test: /\.js$|\.css$|\.html$|\.eot?.+$|\.ttf?.+$|\.woff?.+$|\.svg?.+$/,
-    })
+      algorithm: 'gzip',
+      test: /\.jsx?$|\.css$|\.html$|\.eot?.+$|\.ttf?.+$|\.woff?.+$|\.svg?.+$/,
+    }),
   ],
   module: {
     rules: [
@@ -29,7 +29,7 @@ module.exports = {
       },
       {
         test: /\.(css)$/,
-        //exclude: /node_modules/,
+        // exclude: /node_modules/,
         use: ['style-loader', 'css-loader'],
       },
     ],
@@ -45,5 +45,5 @@ module.exports = {
   devServer: {
     publicPath: '/dist/',
     hot: true,
-  }
-}
+  },
+};
