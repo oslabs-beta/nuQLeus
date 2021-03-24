@@ -1,12 +1,12 @@
 import React from 'react';
 import ServerField from '../components/ServerField';
 import VariableField from '../components/VariableField';
-import QueryEditor from '../components/QueryEditor';
+import QueryField from '../components/QueryField';
 
 const LeftContainer = () => (
   <div id="left-container" className="container">
     <ServerField />
-    <QueryEditor />
+    <QueryField />
     <VariableField />
   </div>
 );
