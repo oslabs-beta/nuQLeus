@@ -27,13 +27,13 @@ Boost GraphQL endpoint testing capabilities with resolver-level performance metr
 <br>
 
 ## Description
-#
+
 NuQLeus is a lightweight, self-contained, GraphQL endpoint testing GUI that extracts resolver-level tracing performance metrics from GraphQL queries and mutations and allows an enduser to easily identify specific resolvers that are having a detrimental impact on application performance.  
 
 <br>
 
 ## Motivation
-#
+
 1. There is a considerable amount of overhead associated with building out a GraphQL API for the first time. 
 2. GraphQL APIs can be created using a multitude of different libraries such as Apollo Server and Express-GraphQL. 
 3. The library that is selected to build a GraphQL API can limit what features and metadata are accessible.
@@ -43,7 +43,7 @@ The motivation for nuQLeus stems from the fact that there are a multitude of dif
 <br>
 
 ## Features
-#
+
 * Simulate GraphQL queries and mutations in the nuQLeus environment
 * Real-time tracing durations at individual resolver-level for GraphQL queries and mutations
 * Processing and visualization of tracing data to help identify performance drop-offs at a glance
@@ -51,7 +51,7 @@ The motivation for nuQLeus stems from the fact that there are a multitude of dif
 <br>
 
 ## Getting Started With nuQLeus
-#
+
 ### **Install nuQLeus**
 
 ```javascript
@@ -163,7 +163,7 @@ The nuQLeus wrapper methods instantiate a server and serve the nuQLeus GUI whene
 <br>
 
 ## Technologies
-#
+
 * GraphQL
 * React
 * Codemirror
@@ -179,13 +179,13 @@ The nuQLeus wrapper methods instantiate a server and serve the nuQLeus GUI whene
 <br>
 
 ## Contributing
-#
+
 Development of nuQLeus is open source on Hithub through the tech accelerator umbrella OS Labs. We are grateful for the community's contribution to the project. Please read the [contribution documentation](contributing.md) to learn more on how you can participate in improvements.
 
 <br>
 
 ## Areas for Improvement
-#
+
 * Functionality
   * Include additional GraphQL servers into nuQLeus coverage
     * Ex. graphql-yoga or graphql-helix
@@ -208,7 +208,7 @@ Development of nuQLeus is open source on Hithub through the tech accelerator umb
 <br>
 
 ## Authors
-#
+
 * Daniel Perez [Daniel-P3](https://github.com/Daniel-P3)
 * Jenny Hai [jhai420](https://github.com/jhai420)
 * Joshua Kim [jkim000](https://github.com/jkim000)
@@ -217,8 +217,16 @@ Development of nuQLeus is open source on Hithub through the tech accelerator umb
 <br>
 
 ## License
-#
+
 [MIT](https://opensource.org/licenses/mit-license.php)
+
+<br>
+
+## Links/Contacts
+
+Email: nuqleusjs@gmail.com
+[Landing Page](http://www.nuqleus.io/)
+[LinkedIn](https://www.linkedin.com/company/nuqleus)
 
 <br>
 

@@ -1,6 +1,10 @@
+/*
+Creates an Express server that serves static files for the nuQLeus GUI to: localhost:3030/nuqleus
+when the nuqleus wrapper methods are invoked on an enduser's server.
+*/
+
 const path = require('path');
 const express = require('express');
-const open = require('open');
 const app = express();
 const PORT = 3030;
 
@@ -15,6 +19,4 @@ app.get('/nuqleus', (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
-  open(`http://localhost:${PORT}/nuqleus`);
 });
-

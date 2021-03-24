@@ -1,5 +1,6 @@
 const { ApolloError } = require('apollo-server');
 
+//Given an id from models, search for the appropriate item in the database.
 module.exports = async (_, { _id }, { models }) => {
   try {
     const listingToRead = await models.Listing.findOne({ _id: _id });

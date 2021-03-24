@@ -1,9 +1,11 @@
+require('dotenv').config();
 const mongoose = require('mongoose');
 const DATABASE_URL = process.env.DATABASE_URL;
 
+//Connect to Database
 const connectDb = () => {
   return mongoose.connect(
-    'mongodb+srv://danny:Codesmith41@cluster0.nbdhe.mongodb.net/sample_airbnb?retryWrites=true&w=majority',
+    DATABASE_URL,
     {
       useUnifiedTopology: true,
       useNewUrlParser: true,
