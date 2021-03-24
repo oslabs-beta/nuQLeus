@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import { GraphContext } from '../contexts/GraphContext';
 
 const ServerField = () => {
@@ -40,7 +39,7 @@ const ServerField = () => {
     return averageResolverResponse;
   }
 
-  function updateGraphData(queryTime, resolverTime) {
+function updateGraphData(queryTime, resolverTime) {
     const data = [];
 
     data.push({x: 'Total Query Time', y: queryTime.duration, label: queryTime.duration + 'ms'});
