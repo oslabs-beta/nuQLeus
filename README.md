@@ -3,7 +3,7 @@
 Boost GraphQL endpoint testing capabilities with resolver-level performance metrics. 
 
 <div align="center">
-  <img src="./src/assets/images/temp-logo.png" width="225px" marginTop= "30px"/>
+  <img src="./src/assets/images/nuQLeus_logo_black_background.png" width="700px" marginTop= "30px"/>
 </div>
 
 
@@ -11,18 +11,21 @@ Boost GraphQL endpoint testing capabilities with resolver-level performance metr
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 ## Table of Contents
-#
+
 - [Description](#description)
 - [Motivation](#motivation)
 - [Features](#features)
 - [Getting Started with nuQLeus](#Getting-Started-with-nuQLeus)
-  - [Install Dependencies and Run Scripts](#Install-Dependencies-and-run-scripts)
-  - [Import nuQLeus and Wrap Schema](#Import-nuQLeus-and-Wrap-Schema)
+  - [Install nuQLeus](#Install-nuQLeus)
+  - [Apollo Server Setup](#Apollo-Server-Setup)
+  - [Express-GraphQL Setup](#Express-GraphQL-Setup)
+  - [Using the nuQLeus GUI](#Using-the-nuQLeus-GUI)
 - [Technologies](#technologies)
 - [Contributing](#contributing)
 - [Areas for Improvement](#areasforimprovement)
 - [Authors](#authors)
 - [License](#license)
+- [Links/Contact](Links/Contacts)
 
 <br>
 
@@ -160,6 +163,10 @@ app.listen(4000, () => {
 ### **Using the nuQLeus GUI**
 The nuQLeus wrapper methods instantiate a server and serve the nuQLeus GUI whenever a user's GraphQL server is initialized. In order to access the nuQLeus GUI, navigate to http://localhost:3030/nuqleus while your server is running.
 
+<div align="center">
+  <img src="./src/assets/gifs/nuqleus_showcase.gif" width="900px" marginTop= "30px"/>
+</div>
+
 <br>
 
 ## Technologies
@@ -224,9 +231,10 @@ Development of nuQLeus is open source on Hithub through the tech accelerator umb
 
 ## Links/Contacts
 
-Email: nuqleusjs@gmail.com
-[Landing Page](http://www.nuqleus.io/)
-[LinkedIn](https://www.linkedin.com/company/nuqleus)
+* Email: nuqleusjs@gmail.com
+* [Landing Page](http://www.nuqleus.io/)
+* [npm](https://www.npmjs.com/package/nuqleus)
+* [LinkedIn](https://www.linkedin.com/company/nuqleus)
 
 <br>
 

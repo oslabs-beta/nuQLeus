@@ -19,6 +19,7 @@
     "graphql-middleware": "^6.0.4",
     "mongoose": "^5.11.18",
     "nodemon": "^2.0.7",
+    "nuqleus": "^0.1.0",
     "open": "^8.0.4"
   }
 }
