@@ -4,6 +4,13 @@ body {
   color: rgb(195, 194, 197);
 }
 
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
 /***** TITLES *****/
 h3 {
   margin-block-start: 0em;

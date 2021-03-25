@@ -136,7 +136,7 @@ const ServerField = () => {
   return (
     <div className="server-field">
         <div className="server-title"><h4 className="query-title">Server:</h4></div>
-        <div className="server-input"><input id="input-link" className="input" type="text" defaultValue={info.uri} placeholder="Enter URL/endpoint for GraphQL API"/></div>
+        <div className="server-input"><input id="input-link" className="input" type="text" defaultValue={info.uri} placeholder="Enter GraphQL API URL"/></div>
         <div className="server-btn"><button id="submit-query" className="btn-gray" type="submit" onClick={handleClick}>Send</button></div>
     </div>
   );

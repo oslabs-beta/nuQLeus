@@ -1,7 +1,7 @@
 // First five full movie query:
 
 query movies {
-  movies (first: 5) {
+  movies (first: 4) {
     _id
     title
     year
