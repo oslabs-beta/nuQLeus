@@ -13,16 +13,13 @@ Boost GraphQL endpoint testing capabilities with resolver-level performance metr
 ## Table of Contents
 
 - [Description](#description)
-- [Motivation](#motivation)
 - [Features](#features)
 - [Getting Started with nuQLeus](#Getting-Started-with-nuQLeus)
   - [Install nuQLeus](#Install-nuQLeus)
   - [Apollo Server Setup](#Apollo-Server-Setup)
   - [Express-GraphQL Setup](#Express-GraphQL-Setup)
   - [Using the nuQLeus GUI](#Using-the-nuQLeus-GUI)
-- [Technologies](#technologies)
 - [Contributing](#contributing)
-- [Areas for Improvement](#areasforimprovement)
 - [Authors](#authors)
 - [License](#license)
 - [Links/Contact](Links/Contacts)
@@ -32,16 +29,6 @@ Boost GraphQL endpoint testing capabilities with resolver-level performance metr
 ## Description
 
 NuQLeus is a lightweight, self-contained, GraphQL endpoint testing GUI that extracts resolver-level tracing performance metrics from GraphQL queries and mutations and allows an enduser to easily identify specific resolvers that are having a detrimental impact on application performance.  
-
-<br>
-
-## Motivation
-
-1. There is a considerable amount of overhead associated with building out a GraphQL API for the first time. 
-2. GraphQL APIs can be created using a multitude of different libraries such as Apollo Server and Express-GraphQL. 
-3. The library that is selected to build a GraphQL API can limit what features and metadata are accessible.
-
-The motivation for nuQLeus stems from the fact that there are a multitude of different libraries, each with varying sets of features, that can be used to implement a GraphQL API. The library that an enduser selected when first creating a GraphQL API can limit which metadata they will have access to; for example, GraphQL APIs setup via Apollo Server have access to resolver-level tracing metrics whle servers created with Express-GraphQL will not. nuQLeus seeks to help bridge this feature gap and enable an enduser to extract resolver-level tracing data from queries and mutations, regardless of which server they used to initially create their API.
 
 <br>
 
@@ -169,48 +156,9 @@ The nuQLeus wrapper methods instantiate a server and serve the nuQLeus GUI whene
 
 <br>
 
-## Technologies
-
-* GraphQL
-* React
-* Codemirror
-* Graphql-middleware
-* Victory 
-* Express & Node.js
-* Jest
-* Supertest
-* Enzyme 
-* Webpack
-* MongoDB
-
-<br>
-
 ## Contributing
 
 Development of nuQLeus is open source on Hithub through the tech accelerator umbrella OS Labs. We are grateful for the community's contribution to the project. Please read the [contribution documentation](contributing.md) to learn more on how you can participate in improvements.
-
-<br>
-
-## Areas for Improvement
-
-* Functionality
-  * Include additional GraphQL servers into nuQLeus coverage
-    * Ex. graphql-yoga or graphql-helix
-  * Add tracing capability for GraphQL subscriptions
-  * Set up a database to store historical user inputs and results
-    * Allow performance metric comparisons between past and present queries and mutations
-    * Alternatively, use localStorage for comparisons
-  * Add onChange user input checks so only valid body/variables can be submitted
-  * Add introspection capability for users to break down their schemas/queries/mutations in the frontend
-* UI/UX
-  * Use React Router (or other method) to show multiple windows in the 
-  * Include additional visualizations of relevant information users may find helpful
-  * Convert the Victory graph library to a more widely-used alternative such as D3
-* Code Base
-  * Convert .js and .jsx code to .ts and .tsx
-  * Implement CORS policy in wrapper for pre-set headers
-    * Prevent the need for users to have to install and enable CORS
-  * Refactor and improve code as seen
 
 <br>
 
