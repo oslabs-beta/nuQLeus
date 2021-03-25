@@ -163,6 +163,10 @@ app.listen(4000, () => {
 ### **Using the nuQLeus GUI**
 The nuQLeus wrapper methods instantiate a server and serve the nuQLeus GUI whenever a user's GraphQL server is initialized. In order to access the nuQLeus GUI, navigate to http://localhost:3030/nuqleus while your server is running.
 
+<div align="center">
+  <img src="./src/assets/gifs/nuqleus_showcase.gif" width="1600px" marginTop= "30px"/>
+</div>
+
 <br>
 
 ## Technologies
