@@ -47,7 +47,6 @@ const options = (request, response, graphQLParams) => ({
 **/
 const newOptions = nuqleus.WrapOptions(options, extensions);
 
-
 /** Initiate graphQL route, passing in new options created by nuQLeus **/
 
 app.use('/graphql', graphqlHTTP(newOptions));
