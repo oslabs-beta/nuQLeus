@@ -8,7 +8,7 @@ const app = express();
 
 /** Require in nuQLeus package  **/
 
-const nuqleus = require('./nuqleus');
+const nuqleus = require('nuqleus');
 
 
 /** Initialize cors and process requests as a JSON  **/

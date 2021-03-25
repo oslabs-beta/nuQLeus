@@ -3,7 +3,7 @@
 Boost GraphQL endpoint testing capabilities with resolver-level performance metrics. 
 
 <div align="center">
-  <img src="./src/assets/images/temp-logo.png" width="225px" marginTop= "30px"/>
+  <img src="./src/assets/images/nuQLeus_logo_reversed.png" width="800px" marginTop= "30px"/>
 </div>
 
 
