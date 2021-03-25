@@ -2,7 +2,7 @@
   "name": "express-server",
   "version": "1.0.0",
   "description": "",
-  "main": "nuqleus.js",
+  "main": "index.js",
   "scripts": {
     "start": "nodemon app.js"
   },
