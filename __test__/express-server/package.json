@@ -18,7 +18,7 @@
     "graphql-middleware": "^6.0.4",
     "mongoose": "^5.11.18",
     "node-fetch": "^2.6.1",
-    "nuqleus": "file:../../nuqleus_npm_package",
+    "nuqleus": "^0.1.0",
     "open": "^8.0.4",
     "pino": "^6.11.1"
   }

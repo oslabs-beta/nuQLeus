@@ -6,7 +6,7 @@ const connectDb = require('./config/db');
 const typeDefs = require('./types');
 const resolvers = require('./resolvers');
 const models = require('./models');
-const nuqleus = require('./nuqleusTest');
+const nuqleus = require('nuqleus');
 
 connectDb();
 
