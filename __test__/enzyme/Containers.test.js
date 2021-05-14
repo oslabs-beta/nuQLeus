@@ -1,11 +1,9 @@
-const serverField = require('../ServerField');
+// const serverField = require('../ServerField');
 import MainContainer from '../../src/client/containers/MainContainer';
 import LeftContainer from '../../src/client/containers/LeftContainer';
 import MiddleContainer from '../../src/client/containers/MiddleContainer';
 import RightContainer from '../../src/client/containers/RightContainer';
 import Enzyme, { shallow, mount, render } from 'enzyme';
-
-
 
 // Enzyme test to check MainContainer rendering
 describe('Should render MainContainer', () => {
@@ -18,8 +16,6 @@ describe('Should render MainContainer', () => {
     expect(container.find('MiddleContainer').length === 1, true);
   })
   
-
-
   // it('render correctly text component', () => {  
   //   const TextInputComponent = renderer.create(<LeftContainer />).toJSON();
   //   expect(TextInputComponent).toMatchSnapshot();
