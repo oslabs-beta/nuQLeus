@@ -1,7 +1,7 @@
 require('dotenv').config();
 const { ApolloServer } = require('apollo-server');
-const { makeExecutableSchema } = require('@graphql-tools/schema')
-const { applyMiddleware } = require('graphql-middleware');
+// const { makeExecutableSchema } = require('@graphql-tools/schema')
+// const { applyMiddleware } = require('graphql-middleware');
 const connectDb = require('./config/db');
 const typeDefs = require('./types');
 const resolvers = require('./resolvers');
