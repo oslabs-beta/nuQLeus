@@ -31,7 +31,7 @@ Boost GraphQL endpoint testing capabilities with resolver-level performance metr
 
 ## Description
 
-NuQLeus is a lightweight, self-contained, GraphQL endpoint testing GUI that extracts resolver-level tracing performance metrics from GraphQL queries and mutations and allows an enduser to easily identify specific resolvers that are having a detrimental impact on application performance.  
+NuQLeus is a lightweight, self-contained, GraphQL endpoint testing GUI that extracts resolver-level tracing performance metrics from GraphQL queries and mutations and allows an end user to easily identify specific resolvers that are having a detrimental impact on application performance.  
 
 <br>
 
@@ -77,14 +77,18 @@ import nuqleus from 'nuqleus';
 
 connectDb();
 
-// 1. Define your context either as an object or function //
-//    Add your models in here, if any                     //
+/**
+ *  1. Define your context either as an object or function.
+ *     Add your models in here, if any.
+ */ 
 const userContext = {
   models,
   sampleObject: {},
 };
 
-// 2. Define your formatResponse, if any, as an object //
+/**
+ *  2. Define your formatResponse, if any, as an object.
+ */ 
 const userFormatResponse = {
   formatResponse: (res, reqContext) => {
     res.http = {
@@ -96,28 +100,32 @@ const userFormatResponse = {
   }
 };
 
-// 3. Create a nuqleusServerObject using the ApolloWrapOptions method                   //
-//    Allowable inputs: typeDefs, resolvers, context, formatResponse, ...resolverInputs //
+/**
+ *  3. Create a nuqleusServerObject using the ApolloWrapOptions method.
+ *     Allowable inputs: typeDefs, resolvers, context, formatResponse, ...resolverInputs.
+ * 
+ *     If any resolverInputs are included, they will be wrapped after the nuqleusTraceResolver
+ *     around your schema with the applyMiddleware method, as shown below:
+ * 
+ *     const schemaWithMiddleWare = applyMiddleware(clientSchema, nuqleusTraceResolvers, ...resolverInputs);
+ */ 
 const nuqleusServerObject = nuqleus.ApolloWrapOptions(
   typeDefs, resolvers, userContext, userFormatResponse
 );
 
 /**
- * If any resolverInputs will be inputted, they will be wrapped after 
- * the nuQLeusTraceResolver around your schema with the applyMiddleware method.
- * 
- * const schemaWithMiddleWare = applyMiddleware(clientSchema, nuqleusTraceResolvers, ...clientInputs);
- */
-
-// 4. Spread the nuqleusServerObject into your new ApolloServer instance //
-//    If you have any add'l options, add them in after
+ *  4. Spread the nuqleusServerObject into your new ApolloServer instance.
+ *     If you have any add'l options, add them in after.
+ */  
 const server = new ApolloServer({
   ...nuqleusServerObject,
-  // add'l user options,
-  // add'l user options,
+  // add'l client options,
+  // add'l client options,
 });
 
-// 5. Run your server /
+/**
+ *  5. Run your server.
+ */  
 server.listen(4001).then(({ url }) => {
   console.log(`🚀 Server ready at ${url}`);
 });
