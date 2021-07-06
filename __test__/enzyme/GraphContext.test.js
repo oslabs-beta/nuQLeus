@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { GraphContext, GraphContextProvider } from '../GraphContext';
+import { GraphContext, GraphContextProvider } from '../../src/clie/G/contextsraphContext';
 import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
