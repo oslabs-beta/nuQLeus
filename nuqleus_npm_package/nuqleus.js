@@ -9,6 +9,7 @@ const connectToNuqleus = () => {
 };
 
 /**
+ * @description Tracing algorithm for express-graphql client servers
  * @param {*} options can be an object or a callback function
  * @param {*} clientExtensions optional callback function
  * @returns new options callback containing nuQleus tracing data 
@@ -18,10 +19,14 @@ nuqleus.WrapOptions = (options, clientExtensions) => {
   connectToNuqleus();
 
   const traceResolvers = async (resolve, root, args, context, info) => {
+    // track start time of client request
     const startTime = Date.now();
+    // resolve client request; use await to run code syncronously
     const result = await resolve(root, args, context, info);
+    // track end time of client request
     const endTime = Date.now();
 
+    // track the exact path the request travels through
     const pathArray = [];
     let curPath = info.path;
     do {
@@ -45,7 +50,7 @@ nuqleus.WrapOptions = (options, clientExtensions) => {
   };
 
   const extensions = ({ document, variables, operationName, result, context }) => {
-    // Create another callback that modifies that OGExt and return a single object
+    // Create another callback that modifies the clientExtensions and return a single object
     const nuqleusExt = ({ document, variables, operationName, result, context }) => ({
       nuQLeusTracing: {
         startTime: new Date(context.nuqleusStartTime).toISOString(),
@@ -97,7 +102,7 @@ nuqleus.WrapOptions = (options, clientExtensions) => {
  * @param {*} typeDefs required
  * @param {*} resolvers required
  * @param {*} clientContext optional; can be object or callback
- * @param {*} clientFormatResponse option; must be object with a formatResponse key
+ * @param {*} clientFormatResponse optional; must be object with a formatResponse key
  * @param {*} clientInputs optional; can be spread with multiple callbacks
  * @returns object to be spread into the client's new ApolloServer() instance
  */
@@ -148,7 +153,7 @@ nuqleus.ApolloWrapOptions = (
   const schemaWithMiddleWare = applyMiddleware(schema, traceResolvers, ...clientInputs);
 
   /**
-   * @returns must be a function that returns an object
+   * @returns a function that returns an object
    *
    * fuse client context object with nuQLeus context
    */

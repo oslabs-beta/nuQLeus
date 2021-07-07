@@ -1,6 +1,6 @@
 /*
 Creates an Express server that serves static files for the nuQLeus GUI to: localhost:3030/nuqleus
-when the nuqleus wrapper methods are invoked on an enduser's server.
+when the nuqleus wrapper methods are invoked on an end user's server.
 */
 
 const path = require('path');
